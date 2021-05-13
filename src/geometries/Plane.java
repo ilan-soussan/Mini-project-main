@@ -10,10 +10,13 @@ public class Plane implements Geometry {
         q0=point;
         normal = vector;
     }
-    public Plane(Point3D point,Point3D point1,Point3D point2)
+    public Plane(Point3D p1,Point3D p2,Point3D p3)
     {
-        q0=point;
-
+        Vector p1p2 = new Vector(p2.getX()- p1.getX(), p2.getY()- p1.getY(), p2.getZ()- p1.getZ());
+        Vector p1p3 = new Vector(p3.getX()- p1.getX(), p3.getY()- p1.getY(), p3.getZ()- p1.getZ());
+        //here we need to put verification if its the same t//
+        normal = p1p2.crossProduct(p1p3);
+        q0 = p1;
     }
 
     public Point3D getQ0() {
