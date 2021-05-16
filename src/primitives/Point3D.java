@@ -39,6 +39,15 @@ public class Point3D {
         tempZ = tempZ*tempZ;
         return (tempX+tempY+tempZ);
     }
+    public boolean samePoiontRasio(Point3D point)
+    {
+        double RasioX = this.getX()/point.getX();
+        double RasioY = this.getY()/point.getY();
+        double RasioZ = this.getZ()/point.getZ();
+        if(RasioX == RasioY && RasioX == RasioZ)
+            return true;
+        return false;
+    }
     public double distance(Point3D point)
     {
         return Math.sqrt(distanceSquared(point));

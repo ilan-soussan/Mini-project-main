@@ -18,6 +18,6 @@ class PlaneTest {
         Vector p1p2 = new Vector(p2.getX()- p1.getX(), p2.getY()- p1.getY(), p2.getZ()- p1.getZ());
         Vector p1p3 = new Vector(p3.getX()- p1.getX(), p3.getY()- p1.getY(), p3.getZ()- p1.getZ());
         Vector normal = p1p2.crossProduct(p1p3);
-        assertEquals(plane.getNormal(),normal,"ERROR: getNormal() result isn't correct");
+        assertEquals(plane.getNormal(p1),normal,"ERROR: getNormal() result isn't correct");
     }
 }
