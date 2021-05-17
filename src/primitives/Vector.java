@@ -104,6 +104,13 @@ public class Vector {
         return tempVector;
     }
 
+
+    public Vector flip()
+    {
+        return new Vector(this.head.getX()*-1,this.head.getY()*-1,this.head.getZ()*-1);
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

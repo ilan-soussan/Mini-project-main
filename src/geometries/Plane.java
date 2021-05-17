@@ -34,6 +34,7 @@ public class Plane implements Geometry {
             out.println("same point3D");
         }
         normal = p1p2.crossProduct(p1p3);
+        normal.normalize();
         q0 = p1;
     }
 
