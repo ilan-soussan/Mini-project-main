@@ -24,7 +24,7 @@ public class Polygon implements Geometry {
 	 * Polygon constructor based on vertices list. The list must be ordered by edge
 	 * path. The polygon must be convex.
 	 * 
-	 * @param vertices list of vertices according to their order by edge path
+	 * //@param vertices list of vertices according to their order by edge path
 	 * @throws IllegalArgumentException in any case of illegal combination of
 	 *                                  vertices:
 	 *                                  <ul>
@@ -41,6 +41,10 @@ public class Polygon implements Geometry {
 	 *                                  <li>The polygon is concave (not convex)</li>
 	 *                                  </ul>
 	 */
+	@Override
+	public List<Point3D> findIntsersections(Ray ray) {
+		return null;
+	}
 	public Polygon(Point3D... vertices) {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");

@@ -2,10 +2,16 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 public class Tube implements Geometry{
     Ray axisRay;
     double radius;
 
+    @Override
+    public List<Point3D> findIntsersections(Ray ray) {
+        return null;
+    }
     public Tube(double Radius, Ray ray)
     {
         radius = Radius;

@@ -2,13 +2,19 @@ package geometries;
 
 import primitives.*;
 
+import java.util.List;
+
 public class Sphere implements Geometry {
 
     Point3D center;
     double radius;
     Vector normal;
 
-    public Sphere(Point3D Center,double r)
+    @Override
+    public List<Point3D> findIntsersections(Ray ray) {
+        return null;
+    }
+    public Sphere(double r,Point3D Center)
     {
         center = Center;
         radius = r;
@@ -29,6 +35,7 @@ public class Sphere implements Geometry {
 
     @Override
     public Vector getNormal(Point3D p1) {
+
         Vector n = new Vector(p1.getX()-center.getX(),p1.getY()-center.getY(), p1.getZ()-center.getZ());
         normal = n.normalize();
         return normal;
