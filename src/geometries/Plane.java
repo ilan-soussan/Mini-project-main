@@ -4,7 +4,7 @@ import primitives.*;
 
 import java.util.List;
 
-import static java.lang.System.out;
+import static primitives.Util.isZero;
 
 
 public class Plane implements Geometry {
@@ -16,10 +16,7 @@ public class Plane implements Geometry {
         normal = vector;
     }
 
-    @Override
-    public List<Point3D> findIntsersections(Ray ray) {
-        return null;
-    }
+
 
     public Plane(Point3D p1, Point3D p2, Point3D p3)
     {
@@ -40,5 +37,19 @@ public class Plane implements Geometry {
     @Override
     public Vector getNormal(Point3D point) {
         return normal.normalize();
+    }
+
+    @Override
+    public List<Point3D> findIntsersections(Ray ray) {
+        /*
+        double normaldir = normal.dotProduct(ray.getRayDir());
+         if (isZero(normaldir)){}
+
+         double t = Util.alignZero(nQMinusP0 / nv);
+         if (t > 0){}
+        */
+
+
+        return null;
     }
 }

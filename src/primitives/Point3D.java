@@ -39,7 +39,7 @@ public class Point3D {
         tempZ = tempZ*tempZ;
         return (tempX+tempY+tempZ);
     }
-    public boolean samePoiontRasio(Point3D point)
+    public boolean samePointRasio(Point3D point)
     {
         double RasioX = this.getX()/point.getX();
         double RasioY = this.getY()/point.getY();
