@@ -8,8 +8,6 @@ import primitives.Vector;
 
 import java.util.List;
 
-import static primitives.Util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlaneTest {
@@ -25,7 +23,7 @@ class PlaneTest {
         //==========same point3D============
         assertFalse(p1.equals(p2)||p2.equals(p3)||p3.equals(p1),"there are 2 points who are the same");
         //==========same line============
-        assertFalse(p1.samePoiontRasio(p2) || p2.samePoiontRasio(p3) || p3.samePoiontRasio(p1),"there are 2 points on same line");
+        assertFalse(p1.samePointRasio(p2) || p2.samePointRasio(p3) || p3.samePointRasio(p1),"there are 2 points on same line");
         Vector normal = p1p2.crossProduct(p1p3);
         normal.normalize();
         assertTrue(normal.equals(plane.getNormal())||(normal.flip()).equals(plane.getNormal()),"ERROR: getNormal() result isn't correct ");
