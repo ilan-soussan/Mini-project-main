@@ -13,7 +13,7 @@ public class Plane implements Geometry {
     public Plane(Point3D point,Vector vector)
     {
         q0=point;
-        normal = vector;
+        normal = vector.normalize();
     }
 
     @Override

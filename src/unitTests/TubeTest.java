@@ -16,10 +16,10 @@ class TubeTest {
 
         Tube T = new Tube(2, p0,new Vector(2,5,6));
         Vector v = T.getNormal(p);
-        Vector temp = new Vector(2,5,6);
+        Vector temp = new Vector(2,5,6).normalize();
         double t = temp.scale(p.distance(p0)).length();
         Point3D O =p0.add(temp.scale(t));
-        Vector normal = p.subtract(O).normalize();
+        Vector normal = p.subtract(O).normalized();
         assertEquals(v,normal,"ERROR: getNormal() function does not work on Tube");
 
 

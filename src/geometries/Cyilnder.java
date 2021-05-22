@@ -1,6 +1,8 @@
 package geometries;
 import primitives.*;
 
+import java.util.List;
+
 public class Cyilnder extends Tube {
     double height;
 
@@ -19,6 +21,11 @@ public class Cyilnder extends Tube {
     public Vector getNormal(Point3D point) {
         return axisRay.getRayDir().normalized();
         //return super.getNormal(point);
+    }
+
+    @Override
+    public List<Point3D> findIntsersections(Ray ray) {
+        return null;
     }
 
     public double getHeight() {
