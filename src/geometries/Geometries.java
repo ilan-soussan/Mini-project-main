@@ -6,14 +6,14 @@ import primitives.Ray;
 import java.util.*;
 
 public class Geometries implements Intersectable{
-    public ArrayList<Intersectable> geometries;
+    private List<Intersectable> geometries;
 
     public Geometries()
     {
         geometries = new ArrayList<Intersectable>();
     }
     public Geometries(Intersectable... geometrieList)    {
-        geometries = new ArrayList<Intersectable>();
+        geometries = new LinkedList<Intersectable>();
         for (int i=0;i<geometrieList.length;i++)
         {
             geometries.add(geometrieList[i]);
@@ -27,6 +27,10 @@ public class Geometries implements Intersectable{
     }
     }
 
+    public  List<Intersectable> getList()
+    {
+        return geometries;
+    }
 
     @Override
     public List<Point3D> findIntsersections(Ray ray) {
