@@ -29,7 +29,7 @@ class SphereTest {
         // ============ Equivalence Partitions Tests ==============
 
         // TC01: Ray's line is outside the sphere (0 points)
-        assertNull(sphere.findIntsersections(new Ray(new Vector(1, 1, 0),
+        assertNull(sphere.findIntsersections(new Ray(new Vector(-1, -4, 0),
                 new Point3D(-1, 0, 0))), "Ray's line out of sphere");
 
         // TC02: Ray starts before and crosses the sphere (2 points)

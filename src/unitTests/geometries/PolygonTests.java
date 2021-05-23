@@ -93,6 +93,8 @@ public class PolygonTests {
         //the only reason test doesnt pass it is because the last digit wrong
     }
 
-
+    @Test
+    public void findIntsersections()
+    {}
 
 }

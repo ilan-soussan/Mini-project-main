@@ -51,8 +51,8 @@ public class Plane implements Geometry {
         double t = Util.alignZero(normal.dotProduct(QMinusP0) / normaldir);
         if (t > 0) {
             List<Point3D> list = new LinkedList<>();
-            Point3D p = new Point3D(ray.getRayPoint().getX()+t*ray.getRayDir().getHead().getX(),ray.getRayPoint().getY()+t*ray.getRayDir().getHead().getY(),ray.getRayPoint().getZ()+t*ray.getRayDir().getHead().getZ());
-            list.add(p);
+            Point3D P = ray.getPoint(t);
+            list.add(P);
             return list;
         }
         return  null;

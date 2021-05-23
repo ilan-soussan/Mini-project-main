@@ -3,6 +3,7 @@ package geometries;
 import primitives.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Sphere implements Geometry {
@@ -49,9 +50,9 @@ public class Sphere implements Geometry {
         double Th = Math.sqrt(Math.pow(radius,2)-Math.pow(d,2));
         double T1 = Tm - Th;
         double T2 = Tm + Th;
-        Point3D P1 = new Point3D(ray.getRayPoint().getX()+T1*ray.getRayDir().getHead().getX(),ray.getRayPoint().getY()+T1*ray.getRayDir().getHead().getY(),ray.getRayPoint().getZ()+T1*ray.getRayDir().getHead().getZ());
-        Point3D P2 = new Point3D(ray.getRayPoint().getX()+T2*ray.getRayDir().getHead().getX(),ray.getRayPoint().getY()+T2*ray.getRayDir().getHead().getY(),ray.getRayPoint().getZ()+T2*ray.getRayDir().getHead().getZ());
-        List<Point3D> list = new ArrayList<>();
+        Point3D P1 = ray.getPoint(T1);
+        Point3D P2 = ray.getPoint(T2);
+        List<Point3D> list = new LinkedList<>();
         if (T1 > 0)
             list.add(P1);
         if (T2 > 0)

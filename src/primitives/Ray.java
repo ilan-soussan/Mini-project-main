@@ -24,4 +24,9 @@ public class Ray {
         return dir;
     }
 
+    public  Point3D getPoint(double t)
+    {
+        Point3D p = new Point3D(p0.getX()+t*dir.getHead().getX(),p0.getY()+t*dir.getHead().getY(),p0.getZ()+t*dir.getHead().getZ());
+        return p;
+    }
 }

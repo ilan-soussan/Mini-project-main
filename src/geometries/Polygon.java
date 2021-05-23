@@ -45,6 +45,7 @@ public class Polygon implements Geometry {
 	public List<Point3D> findIntsersections(Ray ray) {
 		return null;
 	}
+
 	public Polygon(Point3D... vertices) {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");

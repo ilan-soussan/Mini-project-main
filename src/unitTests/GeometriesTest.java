@@ -31,7 +31,7 @@ class GeometriesTest {
         //---------------------BVA----------------------
         //---------------Empty collection---------------
         Geometries g2 = new Geometries();
-        assertTrue(g2.list.isEmpty(),"this list isn't empty");
+        assertTrue(g2.geometries.isEmpty(),"this list isn't empty");
         //-------------Non sharp is intersection--------
         list = g1.findIntsersections(new Ray(new Vector(0,-6,0),new Point3D(-8,0,0)));
         assertEquals(0,list.size(),"there is more than 0 interception");
@@ -40,6 +40,6 @@ class GeometriesTest {
         assertEquals(1,list.size(),"there is more than 1 interception");
         //-----------------All shape interact---------------
         list = g1.findIntsersections(new Ray(new Vector(-10.97,-1.51,7.48),new Point3D(6,0,0)));
-        assertEquals(g1.list.size(),list.size(),"not all shapes interact");
+        assertEquals(g1.geometries.size(),list.size(),"not all shapes interact");
     }
 }
