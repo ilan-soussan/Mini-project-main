@@ -27,6 +27,7 @@ public class Geometries implements Intersectable{
     }
     }
 
+
     @Override
     public List<Point3D> findIntsersections(Ray ray) {
         List<Point3D> tempList = null;
