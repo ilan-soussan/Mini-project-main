@@ -42,10 +42,11 @@ public class Sphere implements Geometry {
 
     @Override
     public List<Point3D> findIntsersections(Ray ray) {
-        Vector u = new Vector(new Point3D(center.getX()-ray.getRayDir().getHead().getX(),center.getY()-ray.getRayDir().getHead().getY(),center.getZ()-ray.getRayDir().getHead().getZ()));
+        //Vector u = new Vector(new Point3D(center.getX()-ray.getRayDir().getHead().getX(),center.getY()-ray.getRayDir().getHead().getY(),center.getZ()-ray.getRayDir().getHead().getZ()));
+        Vector u = new Vector(new Point3D(center.getX()-ray.getPoint(0).getX(),center.getY()-ray.getPoint(0).getY(),center.getZ()-ray.getPoint(0).getZ()));
         double Tm = ray.getRayDir().dotProduct(u);
         double d = Math.sqrt(Math.pow(u.length(),2) - Math.pow(Tm,2));
-        if(d > radius)
+        if(d >= radius)
             return null;
         double Th = Math.sqrt(Math.pow(radius,2)-Math.pow(d,2));
         double T1 = Tm - Th;

@@ -33,8 +33,8 @@ class SphereTest {
                 new Point3D(-1, 0, 0))), "Ray's line out of sphere");
 
         // TC02: Ray starts before and crosses the sphere (2 points)
-        Point3D p1 = new Point3D(0.0651530771650466, 0.355051025721682, 0);
-        Point3D p2 = new Point3D(1.53484692283495, 0.844948974278318, 0);
+        Point3D p1 = new Point3D(0.06515307716504659, 0.35505102572168223, 0);
+        Point3D p2 = new Point3D(1.5348469228349528, 0.8449489742783177, 0);
         List<Point3D> result = sphere.findIntsersections(new Ray(new Vector(3, 1, 0),
                 new Point3D(-1, 0, 0)));
         assertEquals(2, result.size(), "Wrong number of points");
@@ -48,8 +48,7 @@ class SphereTest {
         assertEquals(1,result.size(),"Wrong number of points");
         assertEquals(List.of(p3), result);
         // TC04: Ray starts after the sphere (0 points)
-        result = sphere.findIntsersections(new Ray(new Vector(1,1,1),new Point3D(5,0,6)));
-        assertEquals(0,result.size(),"the Ray doesn't start after the sphere");
+        assertNull(sphere.findIntsersections(new Ray(new Vector(1,1,1),new Point3D(5,0,6))), "Ray's starts after sphere");
         // =============== Boundary Values Tests ==================
 
         // **** Group: Ray's line crosses the sphere (but not the center)
@@ -59,8 +58,8 @@ class SphereTest {
         assertEquals(1,result.size());
         assertEquals(List.of(p4), result,"The ray doesn't start in the end of sphere");
         // TC12: Ray starts at sphere and goes outside (0 points)
-        result = sphere.findIntsersections(new Ray(new Vector(1.2,0.0,-0.6),new Point3D(1.8,0.0,0.6)));
-        assertEquals(0,result.size(),"The ray doesn't start in the end of sphere");
+        assertNull(sphere.findIntsersections(new Ray(new Vector(-2,0,0),new Point3D(0,0,0))),
+                "Ray's doesn't start at sphere and go out of sphere");
         // **** Group: Ray's line goes through the center
         // TC13: Ray starts before the sphere (2 points)
         Point3D p5 = new Point3D(0,0,0);
@@ -84,24 +83,24 @@ class SphereTest {
         assertEquals(1,result.size());
         assertEquals(List.of(p7), result,"The ray doesn't start in the center of sphere");
         // TC17: Ray starts at sphere and goes outside (0 points)
-        result = sphere.findIntsersections(new Ray(new Vector(3,0,0),new Point3D(2,0,0)));
-        assertEquals(0,result.size(),"The ray doesn't start at the sphere and go out");
+        assertNull(sphere.findIntsersections(new Ray(new Vector(3,0,0),new Point3D(2,0,0))),
+                "The ray doesn't start at the sphere and go out");
         // TC18: Ray starts after sphere (0 points)
-        result = sphere.findIntsersections(new Ray(new Vector(3,0,0),new Point3D(3,0,0)));
-        assertEquals(0,result.size(),"The ray doesn't after the end of sphere");
+        assertNull(sphere.findIntsersections(new Ray(new Vector(3,0,0),new Point3D(3,0,0))),
+                "The ray doesn't after the end of sphere");
         // **** Group: Ray's line is tangent to the sphere (all tests 0 points)
         // TC19: Ray starts before the tangent point
-        result = sphere.findIntsersections(new Ray(new Vector(1,0,0),new Point3D(0,0,1)));
-        assertEquals(0,result.size(),"The ray doesn't before the tangent of sphere");
+        assertNull(sphere.findIntsersections(new Ray(new Vector(1,0,0),new Point3D(0,0,1))),
+                "The ray doesn't before the tangent of sphere");
         // TC20: Ray starts at the tangent point
-        result = sphere.findIntsersections(new Ray(new Vector(2,0,0),new Point3D(1,0,1)));
-        assertEquals(0,result.size(),"The ray doesn't start at the tangent of sphere");
+        assertNull(sphere.findIntsersections(new Ray(new Vector(2,0,0),new Point3D(1,0,1))),
+                "The ray doesn't start at the tangent of sphere");
         // TC21: Ray starts after the tangent point
-        result = sphere.findIntsersections(new Ray(new Vector(1.5,0.0,0.0),new Point3D(2,0,1)));
-        assertEquals(0,result.size(),"The ray doesn't after the tangent of sphere");
+        assertNull(sphere.findIntsersections(new Ray(new Vector(1.5,0.0,0.0),new Point3D(2,0,1))),
+                "The ray doesn't after the tangent of sphere");
         // **** Group: Special cases
-        // TC19: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
-        result = sphere.findIntsersections(new Ray(new Vector(0,0,1),new Point3D(3,0,0)));
-        assertEquals(0,result.size(),"The ray doesn't after the tangent of sphere");
+        // TC22: Ray's line is outside, ray is orthogonal to ray start to sphere's center line
+        assertNull(sphere.findIntsersections(new Ray(new Vector(0,0,1),new Point3D(3,0,0))),
+                "The ray doesn't after the tangent of sphere");
     }
 }
