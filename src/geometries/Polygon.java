@@ -43,9 +43,51 @@ public class Polygon implements Geometry {
 	 */
 	@Override
 	public List<Point3D> findIntsersections(Ray ray) {
-		return null;
+		if(!isIntsersectionsExist(ray))
+			return null;
+		return null; /// צריך לעשות
 	}
 
+	public boolean isIntsersectionsExist(Ray ray)
+	{
+		///קיים בעיה בלולאה!
+
+
+
+
+
+
+		boolean flag = true;
+		Vector v1 = (vertices.get(0).subtract(ray.getRayPoint()));
+		Vector Vn = (vertices.get(1).subtract(ray.getRayPoint()));
+		Vector Vn1 = (vertices.get(2).subtract(ray.getRayPoint()));
+		Vector N = Vn1.crossProduct(Vn).normalize();
+		Vector N1 = v1.crossProduct(Vn).normalize();
+		for (int i =1;i<vertices.size();i++)
+		{
+			Vn= Vn1;
+			Vn1 = (vertices.get(i).subtract(ray.getRayPoint()));
+			N = N1;
+			N1 = Vn1.crossProduct(Vn).normalize();
+			Vector A = ray.getRayDir();
+			Double numN1 = N1.dotProduct(ray.getRayDir());
+			double numN =N.dotProduct(ray.getRayDir());
+			if((numN1>0 && numN<0) || (numN1<0 && numN>0) || Util.isZero(Util.alignZero(numN)))
+				flag = false;
+		}
+		//בדיקה של האחרון והראשון
+		Vn = (vertices.get(1).subtract(ray.getRayPoint()));
+		N = v1.crossProduct(Vn);
+		if((N1.dotProduct(ray.getRayDir())>0 && N.dotProduct(ray.getRayDir())<0) ||
+				(N1.dotProduct(ray.getRayDir())<0 && N.dotProduct(ray.getRayDir())>0) ||
+				Util.isZero(Util.alignZero(N1.dotProduct(ray.getRayDir()))))
+			flag = false;
+		return flag;
+	}
+	public Polygon()
+	{
+		;
+	}
 	public Polygon(Point3D... vertices) {
 		if (vertices.length < 3)
 			throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
