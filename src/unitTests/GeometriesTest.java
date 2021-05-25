@@ -22,24 +22,31 @@ class GeometriesTest {
                 new Plane(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0,0,1)),
                 new Sphere(1d,new Point3D(6,0,0)),
                 new Cyilnder(1d,1d,new Ray(new Vector(0,0,1),new Point3D(0,0,4))),
-                //new triangle
+                new triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3)),
                 new Tube(1d,new Ray(new Vector(0,0,-10),new Point3D(3,0,5)))
         );
         //---------------EP----------------
         List<Point3D> list = g1.findIntsersections(new Ray(new Vector(-4.16,-1.63,1.11),new Point3D(3.58,0.81,3.3)));
-        assertTrue(list.size() < 2,"there no more than one interception");    //////////// התכוונת יותר מ2?
+        assertTrue(list.size() >= 1,"there no more than one interception");    //////////// התכוונת יותר מ2?
         //---------------------BVA----------------------
         //---------------Empty collection---------------
         Geometries g2 = new Geometries();
         assertTrue(g2.getList().isEmpty(),"this list isn't empty");
         //-------------Non sharp is intersection--------
         list = g1.findIntsersections(new Ray(new Vector(0,-6,0),new Point3D(-8,0,0)));
-        assertNull(list,"there is more than 0 interception"); ////////שינתי לnull כי זה אמור להחזיר ככה במקרה שאין נקודות חיתוך
+        assertNull(list,"there is more than 0 interception");
         //-----------Only one sharp has interaction---------
         list = g1.findIntsersections(new Ray(new Vector(3.4,-3.34,4.94),new Point3D(-4,0,0)));
         assertEquals(1,list.size(),"there is more than 1 interception");
         //-----------------All shape interact---------------
-        list = g1.findIntsersections(new Ray(new Vector(-10.97,-1.51,7.48),new Point3D(6,0,0)));
+        g1 = new Geometries(
+                new Plane(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0,0,1)),
+                new Sphere(1d,new Point3D(6,0,0)),
+                new Cyilnder(5.0,2,new Ray(new Vector(0,0,1),new Point3D(0,0,6))),
+                new triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3)),
+                new Tube(1.5,new Ray(new Vector(0,0,1),new Point3D(0,0,6)))
+        );
+        list = g1.findIntsersections(new Ray(new Vector(-9.27,-0.97,5.24),new Point3D(6,0,0)));
         assertEquals(g1.getList().size(),list.size(),"not all shapes interact");
     }
 }
