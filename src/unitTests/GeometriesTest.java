@@ -27,14 +27,14 @@ class GeometriesTest {
         );
         //---------------EP----------------
         List<Point3D> list = g1.findIntsersections(new Ray(new Vector(-4.16,-1.63,1.11),new Point3D(3.58,0.81,3.3)));
-        assertTrue(list.size() > 1,"there no more than one interception");
+        assertTrue(list.size() < 2,"there no more than one interception");    //////////// התכוונת יותר מ2?
         //---------------------BVA----------------------
         //---------------Empty collection---------------
         Geometries g2 = new Geometries();
         assertTrue(g2.getList().isEmpty(),"this list isn't empty");
         //-------------Non sharp is intersection--------
         list = g1.findIntsersections(new Ray(new Vector(0,-6,0),new Point3D(-8,0,0)));
-        assertEquals(0,list.size(),"there is more than 0 interception");
+        assertNull(list,"there is more than 0 interception"); ////////שינתי לnull כי זה אמור להחזיר ככה במקרה שאין נקודות חיתוך
         //-----------Only one sharp has interaction---------
         list = g1.findIntsersections(new Ray(new Vector(3.4,-3.34,4.94),new Point3D(-4,0,0)));
         assertEquals(1,list.size(),"there is more than 1 interception");

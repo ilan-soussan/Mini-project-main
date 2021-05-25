@@ -10,7 +10,7 @@ public class Geometries implements Intersectable{
 
     public Geometries()
     {
-        geometries = new ArrayList<Intersectable>();
+        geometries = new LinkedList<Intersectable>();
     }
     public Geometries(Intersectable... geometrieList)    {
         geometries = new LinkedList<Intersectable>();
@@ -34,10 +34,16 @@ public class Geometries implements Intersectable{
 
     @Override
     public List<Point3D> findIntsersections(Ray ray) {
-        List<Point3D> tempList = null;
-        geometries.forEach(geometrie -> 
-                geometrie.findIntsersections(ray).forEach(Point ->
-                        tempList.add(Point) ));
+        List<Point3D> tempList =new LinkedList<Point3D>();
+        for (Intersectable geometrie:geometries) {
+            List<Point3D> listFromGeometries = geometrie.findIntsersections(ray);
+            if(listFromGeometries !=null){
+            for (Point3D p:listFromGeometries) {
+                tempList.add(p);
+            }
+            }
+        }
+
         if(tempList.isEmpty())
             return null;
         return tempList;
