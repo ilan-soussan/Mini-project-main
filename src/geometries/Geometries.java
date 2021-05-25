@@ -14,6 +14,7 @@ public class Geometries implements Intersectable{
     }
     public Geometries(Intersectable... geometrieList)    {
         geometries = new LinkedList<Intersectable>();
+
         for (int i=0;i<geometrieList.length;i++)
         {
             geometries.add(geometrieList[i]);

@@ -39,14 +39,15 @@ class GeometriesTest {
         list = g1.findIntsersections(new Ray(new Vector(3.4,-3.34,4.94),new Point3D(-4,0,0)));
         assertEquals(1,list.size(),"there is more than 1 interception");
         //-----------------All shape interact---------------
+
         g1 = new Geometries(
                 new Plane(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0,0,1)),
                 new Sphere(1d,new Point3D(6,0,0)),
-                new Cyilnder(5.0,2,new Ray(new Vector(0,0,1),new Point3D(0,0,6))),
-                new triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3)),
-                new Tube(1.5,new Ray(new Vector(0,0,1),new Point3D(0,0,6)))
+                //new Cyilnder(4.0,2,new Ray(new Vector(0,0,4),new Point3D(1,0,0))),
+                //new Tube(0.5,new Ray(new Vector(0,0,7),new Point3D(3.8,0d,-2)))
+                new triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3))
         );
-        list = g1.findIntsersections(new Ray(new Vector(-9.27,-0.97,5.24),new Point3D(6,0,0)));
+        list = g1.findIntsersections(new Ray(new Vector(-7.6,-0.99,3.6),new Point3D(6,0,0)));
         assertEquals(g1.getList().size(),list.size(),"not all shapes interact");
     }
 }
