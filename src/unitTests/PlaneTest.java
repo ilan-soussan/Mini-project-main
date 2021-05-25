@@ -35,45 +35,43 @@ class PlaneTest {
         //EP:ray isn't orthogonal or parallel to the plane
         Plane plane = new Plane(new Point3D(1,0,2),new Vector(1,2,3));
         // TC01: Ray's line is outside the plane (0 points)
-        assertNull(plane.findIntsersections(new Ray(new Vector(5,6,4),
-                new Point3D(0,0,1))),"Ray's line out of plane");
+        assertNull(plane.findIntsersections(new Ray(new Vector(-0.38,-5.85,0.0),
+                new Point3D(-3,0,0))),"Ray's line out of plane");
         // TC02: Ray's line is crossing the plane(1 point)
-        Point3D p1 = new Point3D(7,2667,0); //this point is on the plane that interact with ray
-        List<Point3D> result = plane.findIntsersections(new Ray(new Vector(3, 1, 0),
-                new Point3D(-1, 0, 0)));
+        Point3D p1 = new Point3D(0.4225352112676055,-1.6901408450704223,0); //this point is on the plane that interact with ray
+        List<Point3D> result = plane.findIntsersections(new Ray(new Vector(4.73, -3.3, 0d),
+                new Point3D(-2, 0, 0)));
         assertEquals(1, result.size(), "Wrong number of points");
         assertEquals(List.of(p1), result);
         //-----------------------------BVA--------------------------------------
         //Ray is parallel to the plane
-        Ray r1 = new Ray(new Vector(2, -1, 0),new Point3D(2, -1, 0));
+        Ray r1 = new Ray(new Vector(1, -2, 1),new Point3D(3, 0, 0));
         result = plane.findIntsersections(r1);
         assertEquals(0,plane.getNormal().dotProduct(r1.getRayDir()),"this ray isn't parallel or included");
-        assertEquals(0, result.size(),"this ray isn't parallel to the plane");
+        assertNull(result,"this ray isn't parallel to the plane");
         //ray is included in the plane
-        Ray r2 = new Ray(new Vector(2, -1, 0),new Point3D(7, 0, 0));
+        Ray r2 = new Ray(new Vector(1, 2, 3),new Point3D(0, 2, 1));
         result = plane.findIntsersections(r2);
         assertEquals(0,plane.getNormal().dotProduct(r2.getRayDir()),"this ray isn't parallel or included");
         assertTrue(result.size()>0,"this ray isn't included in the plane");
         //ray is orthogonal to the plane
         //P0 is before the plane
-        Point3D p2 = new Point3D(0.429,-1.143,0.286);
-        result = plane.findIntsersections(new Ray(new Vector(2,4,6),new Point3D(-1,0,0)));
+        Point3D p2 = new Point3D(1.1919246435845212,-0.739623217922607,2.0140376782077394);
+        result = plane.findIntsersections(new Ray(new Vector(-3.74,-0.94,1.87),new Point3D(3.14,-0.25,1.04)));
         assertEquals(1,result.size(),"the ray isn't orthogonal");
         assertEquals(List.of(p2), result);
         //p0 is on the plane
-        Point3D p3 = new Point3D(7,0,0);
-        result = plane.findIntsersections(new Ray(new Vector(2,4,6),p3));
-        assertEquals(1,result.size(),"the ray isn't orthogonal");
-        assertEquals(List.of(p3), result);
+        result = plane.findIntsersections(new Ray(new Vector(2,4,6),p2));
+        assertNull(result,"the ray isn't orthogonal");
         //p0 is after the plane
-        result = plane.findIntsersections(new Ray(new Vector(2,4,6),new Point3D(0,0,1)));
-        assertEquals(0,result.size(),"the ray isn't orthogonal");
+        result = plane.findIntsersections(new Ray(new Vector(-1.28,-0.32,0.64),new Point3D(0.68,-0.86,2.27)));
+        assertNull(result,"the ray isn't orthogonal");
         //ray isn't parallel or orthogonal and start on the plane
-        result = plane.findIntsersections(new Ray(new Vector(7,4,6),p3));
-        assertEquals(1,result.size(),"the ray isn't on the plane");
+        result = plane.findIntsersections(new Ray(new Vector(-3.82,8.7,-2.01),p2));
+        assertNull(result,"the ray isn't on the plane");
         //ray isn't parallel or orthogonal and start at Q0
-        result = plane.findIntsersections(new Ray(new Vector(7,4,6),new Point3D(1,0,2)));
-        assertEquals(1,result.size(),"the ray isn't on the plane");
+        result = plane.findIntsersections(new Ray(new Vector(-2.33,-3.67,-2d),plane.getQ0()));
+        assertNull(result,"the ray isn't on the plane");
     }
 
 }

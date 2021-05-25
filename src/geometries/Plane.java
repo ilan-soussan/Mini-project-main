@@ -14,7 +14,11 @@ public class Plane implements Geometry {
     public Plane(Point3D point,Vector vector)
     {
         q0=point;
-        normal = vector.normalize();
+        Point3D p1 = new Point3D(0,0,0);
+        Point3D p2 = new Point3D(vector.getHead().getX(),vector.getHead().getY(),vector.getHead().getZ());
+        Plane plane = new Plane(point,p1,p2);
+        this.normal = plane.normal;
+        //normal = vector.normalize();
     }
 
 

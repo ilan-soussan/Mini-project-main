@@ -25,7 +25,7 @@ public class triangle extends Polygon{
 
     @Override
     public List<Point3D> findIntsersections(Ray ray) {
-
+        return  null;
 
     }
 }
