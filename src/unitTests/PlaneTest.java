@@ -38,7 +38,7 @@ class PlaneTest {
         assertNull(plane.findIntsersections(new Ray(new Vector(-0.38,-5.85,0.0),
                 new Point3D(-3,0,0))),"Ray's line out of plane");
         // TC02: Ray's line is crossing the plane(1 point)
-        Point3D p1 = new Point3D(0.4225352112676055,-1.6901408450704223,0); //this point is on the plane that interact with ray
+        Point3D p1 = new Point3D(0.42253521126760596,-1.6901408450704227,0); //this point is on the plane that interact with ray
         List<Point3D> result = plane.findIntsersections(new Ray(new Vector(4.73, -3.3, 0d),
                 new Point3D(-2, 0, 0)));
         assertEquals(1, result.size(), "Wrong number of points");
