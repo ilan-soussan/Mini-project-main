@@ -17,8 +17,7 @@ public class Plane implements Geometry {
         Point3D p1 = new Point3D(0,0,0);
         Point3D p2 = new Point3D(vector.getHead().getX(),vector.getHead().getY(),vector.getHead().getZ());
         Plane plane = new Plane(point,p1,p2);
-        this.normal = plane.normal;
-        //normal = vector.normalize();
+        normal = vector.normalize();
     }
 
 
@@ -27,7 +26,7 @@ public class Plane implements Geometry {
     {
         Vector p1p2 = new Vector(p2.getX()- p1.getX(), p2.getY()- p1.getY(), p2.getZ()- p1.getZ());
         Vector p1p3 = new Vector(p3.getX()- p1.getX(), p3.getY()- p1.getY(), p3.getZ()- p1.getZ());
-        normal = p1p2.crossProduct(p1p3);
+        normal = p1p2.crossProduct(p1p3).normalize();
         q0 = p1;
     }
 
@@ -36,7 +35,7 @@ public class Plane implements Geometry {
     }
 
     public Vector getNormal() {
-        return normal.normalize();
+        return normal;
     }
 
     @Override
