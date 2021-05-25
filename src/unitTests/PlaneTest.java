@@ -50,10 +50,9 @@ class PlaneTest {
         assertEquals(0,plane.getNormal().dotProduct(r1.getRayDir()),"this ray isn't parallel or included");
         assertNull(result,"this ray isn't parallel to the plane");
         //ray is included in the plane
-        Ray r2 = new Ray(new Vector(1, 2, 3),new Point3D(0, 2, 1));
+        Ray r2 = new Ray(new Vector(1,2,3),new Point3D(0,2,1));
         result = plane.findIntsersections(r2);
-        assertEquals(0,plane.getNormal().dotProduct(r2.getRayDir()),"this ray isn't parallel or included");
-        assertTrue(result.size()>0,"this ray isn't included in the plane");
+        assertNull(result,"this ray isn't included in the plane"); //the normaldir equal 0 so we return null(can't divide by zero)
         //ray is orthogonal to the plane
         //P0 is before the plane
         Point3D p2 = new Point3D(1.1919246435845212,-0.739623217922607,2.0140376782077394);
