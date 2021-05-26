@@ -19,14 +19,19 @@ public class ViewPlaneTests {
 
 	@Test
 	public void testConstructRayThroughPixelWithPlane() {
-        Camera Cam = new Camera(Point3D.ZERO,new Vector(0,0,1),new Vector(0,1,0));
+        Camera Cam = new Camera(Point3D.ZERO,new Vector(0,0,1),new Vector(1,1,0));
         Cam.setViewPlaneSize(3,3);
         Cam.setDistance(1);
+        Plane P1 =new Plane(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0.5,0.5,0.5));
+        //test 1
+        int count =findTheNumberOFIntsersectionsOnThePlane(Cam,P1);
+        assertEquals("Error with camere constructRayThroughPixel with plane thet parallel to viewPanel",count,9);
 
 
-        Plane P1 =new Plane()
-
-
+        Plane P2 =new Plane(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0,0,1));
+        //test 2
+        count =findTheNumberOFIntsersectionsOnThePlane(Cam,P2);
+        assertEquals("Error with camere constructRayThroughPixel with plane thet not parallel to viewPanel",count,6);
     }
 
 	@Test

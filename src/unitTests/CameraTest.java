@@ -1,4 +1,4 @@
-package unitTests;
+package unittests;
 
 import static org.junit.Assert.*;
 
@@ -9,7 +9,7 @@ import primitives.*;
 
 /**
  * Testing Camera Class
- * 
+ *
  * @author Dan
  *
  */
@@ -46,7 +46,7 @@ public class CameraTest {
 				camera.setViewPlaneSize(6, 6).constructRayThroughPixel(3, 3, 1, 1));
 
 		// TC12: 3X3 Center of Upper Side (0,1)
-		assertEquals("Bad ray", new Ray(new Vector(0, -2, 10),Point3D.ZERO),
+		assertEquals("Bad ray", new Ray( new Vector(0, -2, 10),Point3D.ZERO),
 				camera.setViewPlaneSize(6, 6).constructRayThroughPixel(3, 3, 1, 0));
 
 		// TC13: 3X3 Center of Left Side (1,0)
@@ -54,4 +54,5 @@ public class CameraTest {
 				camera.setViewPlaneSize(6, 6).constructRayThroughPixel(3, 3, 0, 1));
 
 	}
+
 }
