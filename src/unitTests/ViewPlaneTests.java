@@ -23,6 +23,7 @@ public class ViewPlaneTests {
         Cam.setViewPlaneSize(3,3);
         Cam.setDistance(1);
 
+
         Plane P1 =new Plane()
 
 
