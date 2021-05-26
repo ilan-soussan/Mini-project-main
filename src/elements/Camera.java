@@ -11,6 +11,7 @@ public class Camera {
     double Width;
     double Height;
     double Distance;
+
     public Vector getVleft() {
         return Vleft;
     }
@@ -27,27 +28,30 @@ public class Camera {
         return point;
     }
 
-    public Camera( Point3D cameraPoint,Vector cameraVup,Vector cameraVleft)
-    {
-        if(!Util.isZero(cameraVup.dotProduct(cameraVleft))) {
-            throw new IllegalArgumentException( "Vectors not vertical to each other");
+    public Camera(Point3D cameraPoint, Vector cameraVup, Vector cameraVleft) {
+        if (!Util.isZero(cameraVup.dotProduct(cameraVleft))) {
+            throw new IllegalArgumentException("Vectors not vertical to each other");
         }
         Vright = cameraVup.crossProduct(cameraVleft).normalize();
         Vleft = cameraVleft.normalize();
         Vup = cameraVup.normalize();
         point = cameraPoint;
     }
-    public Camera setViewPlaneSize(double width, double height)
-    {
-Width=width;
-Height=height;
+
+    public Camera setViewPlaneSize(double width, double height) {
+        Width = width;
+        Height = height;
         return this;
     }
-    public Camera setDistance(double distance)
-    {
-Distance=distance;
+
+    public Camera setDistance(double distance) {
+        Distance = distance;
 
 
         return this;
     }
-    public Ray constructRayThroughPixel(int nX, int nY, int j, int i){return null;}
+
+    public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
+        return null;
+    }
+}
