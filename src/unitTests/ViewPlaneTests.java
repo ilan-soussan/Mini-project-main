@@ -23,6 +23,5 @@ public class ViewPlaneTests {
 
 	@Test
 	public void testConstructRayThroughPixelWithTriangle() {
-
     }
 }
