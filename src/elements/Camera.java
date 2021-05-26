@@ -5,15 +5,15 @@ import primitives.*;
 public class Camera {
     private Point3D point;
     private Vector Vup;
-    private Vector Vleft;
+    private Vector Vtowards;
     private Vector Vright;
 
     double Width;
     double Height;
     double Distance;
 
-    public Vector getVleft() {
-        return Vleft;
+    public Vector getVtowards() {
+        return Vtowards;
     }
 
     public Vector getVright() {
@@ -28,12 +28,12 @@ public class Camera {
         return point;
     }
 
-    public Camera(Point3D cameraPoint, Vector cameraVup, Vector cameraVleft) {
-        if (!Util.isZero(cameraVup.dotProduct(cameraVleft))) {
+    public Camera(Point3D cameraPoint, Vector cameraVup, Vector cameraVtowards) {
+        if (!Util.isZero(cameraVup.dotProduct(cameraVtowards))) {
             throw new IllegalArgumentException("Vectors not vertical to each other");
         }
-        Vright = cameraVup.crossProduct(cameraVleft).normalize();
-        Vleft = cameraVleft.normalize();
+        Vright = cameraVup.crossProduct(cameraVtowards).normalize();
+        Vtowards = cameraVtowards.normalize();
         Vup = cameraVup.normalize();
         point = cameraPoint;
     }

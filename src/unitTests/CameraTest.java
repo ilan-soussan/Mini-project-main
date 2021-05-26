@@ -1,3 +1,4 @@
+package unitTests;
 
 import static org.junit.Assert.*;
 
@@ -53,5 +54,4 @@ public class CameraTest {
 				camera.setViewPlaneSize(6, 6).constructRayThroughPixel(3, 3, 0, 1));
 
 	}
-
 }
