@@ -2,6 +2,10 @@ package elements;
 
 import primitives.*;
 
+import java.util.LinkedList;
+import java.util.List;
+import static primitives.Util.*;
+
 public class Camera {
     private Point3D point;
     private Vector Vup;
@@ -50,27 +54,28 @@ public class Camera {
     }
 
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
+        //image center
         Point3D Pc = point.add(Vtowards.scale(Distance));
-
+        //Ratio(pixel width & height)
         double Ry = Height/nY;
         double Rx = Width/nX;
+        //Pixel[i,j] center
 
-        double Xj = ((j-(nX-1)/2)*Rx)*-1;
-        double Yi = ((i-(nY-1)/2)*Ry);
-/*
-        if(Util.isZero(Rx*(j-(double)(nX-1)/2))&&Util.isZero(-Ry*(i-(double)(nY-1)/2))) return new Ray(Pc.subtract(point),point);
-        else if(Util.isZero(Rx*(j-(double)(nX-1)/2))) return new Ray(Pc.add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(point),point);
-        else if(Util.isZero(-Ry*(i-(double)(nY-1)/2))) return new Ray(Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).subtract(point),point);
-        else return new Ray(Pc.add(Vright.scale(Rx*(j-(double)(nX-1)/2))).add(Vup.scale(-Ry*(i-(double)(nY-1)/2))).subtract(point),point);
-        */
+        double Yi = ((i-(nY-1)/2)*Ry)*-1;
+        double Xj = ((j-(nX-1)/2)*Rx);
+        Point3D Pij = Pc;
 
 
-// j-((nX-1)/2))                 //i-((nY-1)/2))
-//        Point3D Pij = Pc.add(Vright.scale(Xj).add(Vup.scale(Yi)));
-        Point3D Pij = Pc.add(Vright.scale((Xj)).subtract(Vup.scale((Yi))));
-        Vector Vij = Pij.subtract(point);
+        if(!isZero(Xj))
+            Pij = Pij.add(Vright.scale(Xj));
+        if(!isZero(Yi))
+            Pij = Pij.add(Vup.scale(Yi));
 
 
-        return new Ray(Vij,point);
+        Vector Vij = Pij.subtract(this.getPoint());
+        Ray ray = new Ray(Vij,point);
+
+        return ray;
+
     }
 }

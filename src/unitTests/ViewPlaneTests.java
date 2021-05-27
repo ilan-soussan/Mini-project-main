@@ -122,7 +122,7 @@ public class ViewPlaneTests {
         triangle t1=new triangle(new Point3D(0, 1, -2),new Point3D(-1, -1, -2),new Point3D(1, -1, -2));
 
         int count = findTheNumberOFIntsersectionsOnThePlane(Cam,t1);
-        assertEquals("Error with camere constructRayThroughPixel with triangle with one point",count,2);
+        assertEquals("Error with camere constructRayThroughPixel with triangle with one point",2,count);
         //test 2
 	    triangle T2 = new triangle(new Point3D(0,20,-2),new Point3D(1,-1,-2),new Point3D(-1,-1,-2));
 
