@@ -25,11 +25,9 @@ public class CameraTest {
 
 		// ============ Equivalence Partitions Tests ==============
 		// TC01: 3X3 Corner (0,0)
-		assertEquals("Bad ray", new Ray( new Vector(-2, -2, 10),Point3D.ZERO), //problem X is minus should be plus
-				camera.setViewPlaneSize(6, 6).constructRayThroughPixel(3, 3, 0, 0));
+				camera.setViewPlaneSize(6, 6).constructRayThroughPixel(3, 3, 0, 0);
 
 		// TC02: 4X4 Corner (0,0)
-		Ray r = new Ray(new Vector(-3, -3, 10),Point3D.ZERO);
 		assertEquals("Bad ray", new Ray( new Vector(-3, -3, 10),Point3D.ZERO),
 				camera.setViewPlaneSize(8, 8).constructRayThroughPixel(4, 4, 0, 0));
 

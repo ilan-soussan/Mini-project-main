@@ -61,8 +61,8 @@ public class Camera {
         double Rx = Width/nX;
         //Pixel[i,j] center
 
-        double Yi = ((i-(nY-1)/2)*Ry)*-1;
-        double Xj = ((j-(nX-1)/2)*Rx);
+        double Yi = ((i-(nY-1)/2d)*Ry)*-1;
+        double Xj = ((j-(nX-1)/2d)*Rx)*-1;
         Point3D Pij = Pc;
 
 
@@ -72,8 +72,8 @@ public class Camera {
             Pij = Pij.add(Vup.scale(Yi));
 
 
-        Vector Vij = Pij.subtract(this.getPoint());
-        Ray ray = new Ray(Vij,point);
+        Vector Vij = Pij.subtract(point);
+        Ray ray = new Ray(Vij.normalize(),point);
 
         return ray;
 
