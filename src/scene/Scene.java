@@ -19,19 +19,23 @@ public class Scene {
         geometries = new Geometries();
     }
 
-    public void setAmbientLight(AmbientLight ambientLight) {
+    public Scene setAmbientLight(AmbientLight ambientLight) {
         this.ambientLight = ambientLight;
+        return this;
     }
 
-    public void setBackground(Color background) {
+    public Scene setBackground(Color background) {
         this.background = background;
+        return this;
     }
 
-    public void setGeometries(Geometries geometries) {
+    public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
+        return this;
     }
 
-    public void setName(String name) {
+    public Scene setName(String name) {
         this.name = name;
+        return this;
     }
 }
