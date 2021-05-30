@@ -73,14 +73,12 @@ public class Render {
         int x = imageWriter.getNx();
         int y = imageWriter.getNy();
 
-        int skipX = x/interval;
-        int skipY = y/interval;
 
         for (int i=0;i<x;i++)
         {
             for (int j =0;j<y;++j)
             {
-             if(i%skipX ==0||j%skipY ==0)
+             if(i%interval ==0||j%interval ==0)
                  imageWriter.writePixel(i,j,color);
             }
         }
