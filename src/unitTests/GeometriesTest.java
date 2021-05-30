@@ -21,7 +21,7 @@ class GeometriesTest {
         Geometries g1 = new Geometries(
                 new Plane(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0,0,1)),
                 new Sphere(1d,new Point3D(6,0,0)),
-                new Cyilnder(1d,1d,new Ray(new Vector(0,0,1),new Point3D(0,0,4))),
+                new Cylinder(1d,1d,new Ray(new Vector(0,0,1),new Point3D(0,0,4))),
                 new triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3)),
                 new Tube(1d,new Ray(new Vector(0,0,-10),new Point3D(3,0,5)))
         );

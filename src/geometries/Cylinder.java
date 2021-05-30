@@ -3,15 +3,15 @@ import primitives.*;
 
 import java.util.List;
 
-public class Cyilnder extends Tube {
+public class Cylinder extends Tube {
     double height;
 
-    public Cyilnder (double Height,double Radius,Ray ray)
+    public Cylinder(double Height, double Radius, Ray ray)
     {
         super(Radius, ray);
         height = Height;
     }
-    public Cyilnder (double Height,double Radius,Point3D Point,Vector V)
+    public Cylinder(double Height, double Radius, Point3D Point, Vector V)
     {
         super(Radius, Point,V);
         height = Height;
