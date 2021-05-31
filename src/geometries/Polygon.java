@@ -10,7 +10,7 @@ import static primitives.Util.*;
  * 
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
 	/**
 	 * List of polygon's vertices
 	 */
@@ -43,6 +43,13 @@ public class Polygon implements Geometry {
 	 */
 	@Override
 	public List<Point3D> findIntsersections(Ray ray) {
+		if(!isIntsersectionsExist(ray))
+			return null;
+		return null; /// צריך לעשות
+	}
+
+	@Override
+	public List<GeoPoint> findGeoIntersection(Ray ray) {
 		if(!isIntsersectionsExist(ray))
 			return null;
 		return null; /// צריך לעשות

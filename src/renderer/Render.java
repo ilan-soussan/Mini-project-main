@@ -29,6 +29,7 @@ public class Render {
         return this;
     }
 
+
     public Render setCamera(Camera camera) {
         this.camera = camera;
         return this;
@@ -43,7 +44,7 @@ public class Render {
         if (imageWriter == null)
             throw new MissingResourceException("imageWriter is null", "Render", "imageWriter");
         if (camera == null)
-            throw new MissingResourceException("camrea is null", "Render", "Camera");
+            throw new MissingResourceException("camera is null", "Render", "Camera");
         if (rayTracerBase == null)
             throw new MissingResourceException("rayTracerBase is null", "Render", "rayTracerBase");
 
@@ -57,9 +58,9 @@ public class Render {
         {
             for (int j =0;j<y;++j)
             {
-                Ray pixselRay = camera.constructRayThroughPixel(x,y,i,j);
-                Color pixselColor = rayTracerBase.traceRay(pixselRay);
-                imageWriter.writePixel(i,j,pixselColor);
+                Ray pixelRay = camera.constructRayThroughPixel(x,y,i,j);
+                Color pixelColor = rayTracerBase.traceRay(pixelRay);
+                imageWriter.writePixel(i,j,pixelColor);
             }
         }
 

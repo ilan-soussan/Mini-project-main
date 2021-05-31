@@ -64,12 +64,12 @@ public class ViewPlaneTests {
 	    Camera Cam = new Camera(Point3D.ZERO,new Vector(0,0,-1),new Vector(0,1,0));
 	    Cam.setViewPlaneSize(3,3);
 	    Cam.setDistance(1);
-        triangle t1=new triangle(new Point3D(0, 1, -2),new Point3D(-1, -1, -2),new Point3D(1, -1, -2));
+        Triangle t1=new Triangle(new Point3D(0, 1, -2),new Point3D(-1, -1, -2),new Point3D(1, -1, -2));
 
         int count = findTheNumberOFIntsersectionsOnTheShape(Cam,t1);
         assertEquals("Error with camera constructRayThroughPixel with triangle with one point",1,count);
         //test 2
-	    triangle T2 = new triangle(new Point3D(0,20,-2),new Point3D(1,-1,-2),new Point3D(-1,-1,-2));
+	    Triangle T2 = new Triangle(new Point3D(0,20,-2),new Point3D(1,-1,-2),new Point3D(-1,-1,-2));
 
 	    count = findTheNumberOFIntsersectionsOnTheShape(Cam,T2);
         assertEquals("Error with camera constructRayThroughPixel with triangle with more then one",2,count);

@@ -22,7 +22,7 @@ class GeometriesTest {
                 new Plane(new Point3D(1,0,0),new Point3D(0,1,0),new Point3D(0,0,1)),
                 new Sphere(1d,new Point3D(6,0,0)),
                 new Cylinder(1d,1d,new Ray(new Vector(0,0,1),new Point3D(0,0,4))),
-                new triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3)),
+                new Triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3)),
                 new Tube(1d,new Ray(new Vector(0,0,-10),new Point3D(3,0,5)))
         );
         //---------------EP----------------
@@ -45,7 +45,7 @@ class GeometriesTest {
                 new Sphere(1d,new Point3D(6,0,0)),
                 //new Cyilnder(4.0,2,new Ray(new Vector(0,0,4),new Point3D(1,0,0))),
                 //new Tube(0.5,new Ray(new Vector(0,0,7),new Point3D(3.8,0d,-2)))
-                new triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3))
+                new Triangle(new Point3D(4.43,-2.81,0),new Point3D(4.94,1.17,0),new Point3D(4.7,0,3))
         );
         list = g1.findIntsersections(new Ray(new Vector(-7.6,-0.99,3.6),new Point3D(6,0,0)));
         assertEquals(g1.getList().size(),list.size(),"not all shapes interact");

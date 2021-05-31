@@ -8,9 +8,9 @@ import primitives.Vector;
 import java.util.LinkedList;
 import java.util.List;
 
-public class triangle extends Polygon{
+public class Triangle extends Polygon{
 
-    public  triangle(Point3D p1,Point3D p2,Point3D p3)
+    public Triangle(Point3D p1, Point3D p2, Point3D p3)
     {
         super(p1,p2,p3);
     }
@@ -28,6 +28,14 @@ public class triangle extends Polygon{
         return p.findIntsersections(ray);
     }
 
+    @Override
+    public List<GeoPoint> findGeoIntersection(Ray ray){
+        if(!isIntsersectionsExist(ray))
+            return null;
+        Plane p = new Plane(vertices.get(0),vertices.get(1),vertices.get(2));//// הנחה שהמצולע יכול להיות רק במישור אחד
+        p.emission = this.emission;
+        return p.findGeoIntersection(ray);
+    }
     @Override
     public boolean isIntsersectionsExist(Ray ray)
     {

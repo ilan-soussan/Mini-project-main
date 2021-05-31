@@ -1,13 +1,10 @@
 package unitTests;
 
-import geometries.Polygon;
-import geometries.triangle;
+import geometries.Triangle;
 import org.junit.jupiter.api.Test;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,11 +15,11 @@ class triangleTest {
 
 
         //EP Outside
-        triangle T = new triangle(new Point3D(0,0,1),new Point3D(0,5,5),new Point3D(0,3,1));
+        Triangle T = new Triangle(new Point3D(0,0,1),new Point3D(0,5,5),new Point3D(0,3,1));
         assertNull(T.findIntsersections(new Ray(new Vector(1,2,3),new Point3D(5,2,3))),"Fail to detect error when the ray is out the triangle");
 
         //EP Inside triangle
-        T = new triangle(new Point3D(4.02,0,0),new Point3D(0,3,0),new Point3D(0,0,3));
+        T = new Triangle(new Point3D(4.02,0,0),new Point3D(0,3,0),new Point3D(0,0,3));
         assertEquals(new Point3D(1.0481227651966627,1.3793206197854588,0.8384982121573301),T.findIntsersections(new Ray(new Vector(1.05,0.38,0.84),new Point3D(0,1,0))).get(0),"Fails while the beam is cut with the triangle");
 
         //BVA On edge's continuation

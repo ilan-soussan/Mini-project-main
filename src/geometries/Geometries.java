@@ -5,6 +5,7 @@ import primitives.Ray;
 
 import java.util.*;
 
+
 public class Geometries implements Intersectable{
     private List<Intersectable> geometries;
 
@@ -49,5 +50,22 @@ public class Geometries implements Intersectable{
             return null;
         return tempList;
         }
+
+    @Override
+    public List<GeoPoint> findGeoIntersection(Ray ray) {
+        List<GeoPoint> tempList =new LinkedList<GeoPoint>();
+        for (Intersectable geometry:geometries) {
+            List<GeoPoint> listFromGeometries = geometry.findGeoIntersection(ray);
+            if(listFromGeometries !=null){
+                for (GeoPoint gp:listFromGeometries) {
+                    tempList.add(gp);
+                }
+            }
+        }
+
+        if(tempList.isEmpty())
+            return null;
+        return tempList;
     }
+}
 
