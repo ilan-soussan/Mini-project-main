@@ -4,7 +4,7 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
-public class spotLight extends PointLight {
+public class SpotLight extends PointLight {
 
 
     private Vector direction;
@@ -14,7 +14,7 @@ public class spotLight extends PointLight {
      * @param Intensity
      * @param Position
      */
-    public spotLight(Color Intensity, Point3D Position,Vector Direction) {
+    public SpotLight(Color Intensity, Point3D Position,Vector Direction) {
         super(Intensity, Position);
         direction = Direction;
     }
