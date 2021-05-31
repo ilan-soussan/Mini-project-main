@@ -34,7 +34,7 @@ public class Geometries implements Intersectable{
         return geometries;
     }
 
-    @Override
+    /*@Override
     public List<Point3D> findIntsersections(Ray ray) {
         List<Point3D> tempList =new LinkedList<Point3D>();
         for (Intersectable geometrie:geometries) {
@@ -49,7 +49,7 @@ public class Geometries implements Intersectable{
         if(tempList.isEmpty())
             return null;
         return tempList;
-        }
+        }*/
 
     @Override
     public List<GeoPoint> findGeoIntersection(Ray ray) {

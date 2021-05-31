@@ -5,10 +5,11 @@ import primitives.Ray;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public interface Intersectable {
-    List<Point3D> findIntsersections(Ray ray);
-    public static class GeoPoint {
+
+        public static class GeoPoint {
         public Geometry geometry;
         public Point3D point;
 
@@ -27,4 +28,9 @@ public interface Intersectable {
         }
     }
     List<GeoPoint> findGeoIntersection(Ray ray);
+    default List<Point3D> findIntsersections(Ray ray) {
+        var geoList = findGeoIntersection(ray);
+        return geoList == null ? null
+                : geoList.stream().map(gp -> gp.point).collect(Collectors.toList());
+    }
 }

@@ -20,13 +20,13 @@ public class Triangle extends Polygon{
         return plane.getNormal(point);
     }
 
-    @Override
+/*    @Override
     public List<Point3D> findIntsersections(Ray ray) {
         if(!isIntsersectionsExist(ray))
             return null;
         Plane p = new Plane(vertices.get(0),vertices.get(1),vertices.get(2));//// הנחה שהמצולע יכול להיות רק במישור אחד
         return p.findIntsersections(ray);
-    }
+    }*/
 
     @Override
     public List<GeoPoint> findGeoIntersection(Ray ray){

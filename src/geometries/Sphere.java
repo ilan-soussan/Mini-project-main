@@ -40,7 +40,7 @@ public class Sphere extends Geometry {
         return normal;
     }
 
-    @Override
+/*    @Override
     public List<Point3D> findIntsersections(Ray ray) {
         Vector u = new Vector(new Point3D(center.getX()-ray.getPoint(0).getX(),center.getY()-ray.getPoint(0).getY(),center.getZ()-ray.getPoint(0).getZ()));
         double Tm = ray.getRayDir().dotProduct(u);
@@ -61,7 +61,7 @@ public class Sphere extends Geometry {
             return list;
         else
             return  null;
-    }
+    }*/
 
     @Override
     public List<GeoPoint> findGeoIntersection(Ray ray) {

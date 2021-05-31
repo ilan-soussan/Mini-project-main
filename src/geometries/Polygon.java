@@ -41,12 +41,12 @@ public class Polygon extends Geometry {
 	 *                                  <li>The polygon is concave (not convex)</li>
 	 *                                  </ul>
 	 */
-	@Override
+	/*@Override
 	public List<Point3D> findIntsersections(Ray ray) {
 		if(!isIntsersectionsExist(ray))
 			return null;
 		return null; /// צריך לעשות
-	}
+	}*/
 
 	@Override
 	public List<GeoPoint> findGeoIntersection(Ray ray) {

@@ -37,8 +37,8 @@ public class Tube extends Geometry{
         return V.normalized();
     }
 
-    @Override
-    public List<Point3D> findIntsersections(Ray ray) {return  null;}
+   /* @Override
+    public List<Point3D> findIntsersections(Ray ray) {return  null;}*/
 
     @Override
     public List<GeoPoint> findGeoIntersection(Ray ray) {

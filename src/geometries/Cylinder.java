@@ -23,10 +23,10 @@ public class Cylinder extends Tube {
         //return super.getNormal(point);
     }
 
-    @Override
+    /*@Override
     public List<Point3D> findIntsersections(Ray ray) {
         return null;
-    }
+    }*/
 
     public double getHeight() {
         return height;

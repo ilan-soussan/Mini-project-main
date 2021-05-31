@@ -43,7 +43,7 @@ public class Plane extends Geometry {
         return normal.normalize();
     }
 
-    @Override
+/*    @Override
     public List<Point3D> findIntsersections(Ray ray) {
 
         double normaldir = normal.dotProduct(ray.getRayDir());
@@ -59,7 +59,7 @@ public class Plane extends Geometry {
             return list;
         }
         return  null;
-    }
+    }*/
 
     @Override
     public List<GeoPoint> findGeoIntersection(Ray ray) {
