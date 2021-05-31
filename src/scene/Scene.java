@@ -13,7 +13,7 @@ public class Scene {
     public Color background = new Color(Color.BLACK);
     public AmbientLight ambientLight = new AmbientLight();
     public Geometries geometries = new Geometries();
-List<LightSource> light;
+    public List<LightSource> lights;
 
     public Scene(String Name)
     {
@@ -21,7 +21,7 @@ List<LightSource> light;
         background = new Color(Color.BLACK);
         ambientLight = new AmbientLight();
         geometries = new Geometries();
-        light = new LinkedList<LightSource>();
+        lights = new LinkedList<LightSource>();
     }
 
     public Scene setAmbientLight(AmbientLight ambientLight) {
@@ -29,8 +29,8 @@ List<LightSource> light;
         return this;
     }
 
-    public Scene setLight(List<LightSource> light) {
-        this.light = light;
+    public Scene setLight(List<LightSource> Lights) {
+        this.lights = Lights;
         return this;
     }
 
