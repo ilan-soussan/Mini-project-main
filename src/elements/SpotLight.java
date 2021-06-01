@@ -21,11 +21,14 @@ public class SpotLight extends PointLight {
 
     @Override
     public Vector getL(Point3D p) {
-        return super.getL(p);
+return super.getL(p).normalize();
     }
 
     @Override
     public Color getIntensity(Point3D p) {
-        return super.getIntensity(p);
-    }
+        Double d = position.distance(p);
+        Vector v = position.subtract(p).normalize();
+        Color intensityL = getIntensity().scale(Math.max((1/(Kc+Kl*d+Kq*d*d)),direction.dotProduct(v)));
+        return intensityL.scale(1d/(Kc+Kl*d+Kq*d*d));
+            }
 }

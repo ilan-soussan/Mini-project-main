@@ -8,11 +8,10 @@ import primitives.Vector;
 public class PointLight extends Light implements LightSource {
 
 
-    private Point3D position;
-    private double Kc =1d;
-    private double Kl =0d;
-    private double Kq =0d;
-    Color intensityL;
+    protected Point3D position;
+    protected double Kc =1d;
+    protected double Kl =0d;
+    protected double Kq =0d;
     /**
      * constacor for Light
      *
@@ -44,18 +43,17 @@ public class PointLight extends Light implements LightSource {
      */
     @Override
     public Color getIntensity(Point3D p) {
-        return intensityL;
+        double d=position.distance(p);
+        return getIntensity().scale(1d/(Kc+Kl*d+Kq*d*d));
     }
-
     /**
+     *
      * @param p
      * @return
      */
     @Override
     public Vector getL(Point3D p) {
-        Double d = position.distance(p);
-        intensityL = getIntensity().scale(1/(Kc+Kl*d+Kq*d*d));
-        Vector v = position.subtract(p);
-        return  v;
+        return p.subtract(position).normalize();
     }
+
 }

@@ -99,7 +99,7 @@ public class LightsTests {
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracerBase(new RayTracerBasic(scene2));
-		render.renderImage();
+			render.renderImage();
 		render.writeToImage();
 	}
 
