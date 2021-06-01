@@ -33,6 +33,7 @@ public class Triangle extends Polygon{
         if(!isIntsersectionsExist(ray))
             return null;
         Plane p = new Plane(vertices.get(0),vertices.get(1),vertices.get(2));//// הנחה שהמצולע יכול להיות רק במישור אחד
+        p.material = this.material;
         p.emission = this.emission;
         return p.findGeoIntersection(ray);
     }

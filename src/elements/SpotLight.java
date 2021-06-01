@@ -30,5 +30,5 @@ return super.getL(p).normalize();
         Vector v = position.subtract(p).normalize();
         Color intensityL = getIntensity().scale(Math.max((1/(Kc+Kl*d+Kq*d*d)),direction.dotProduct(v)));
         return intensityL.scale(1d/(Kc+Kl*d+Kq*d*d));
-            }
+    }
 }
