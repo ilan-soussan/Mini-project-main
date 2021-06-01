@@ -31,8 +31,6 @@ public class RayTracerBasic extends RayTracerBase {
     }
 
 
-
-
     private Color calcLocalEffects(GeoPoint intersection, Ray ray) {
         Vector v = ray.getRayDir ();
         Vector n = intersection.geometry.getNormal(intersection.point);
@@ -46,13 +44,27 @@ public class RayTracerBasic extends RayTracerBase {
             Vector l = lightSource.getL(intersection.point);
             double nl = Util.alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
+                //if (occluded(lightSource,intersection)) {
                     Color lightIntensity = lightSource.getIntensity(intersection.point);
                     color = color.add(calcDiffusive(kd, l, n, lightIntensity),
                             calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                //}
                 }
 
         }
         return color;
+    }
+
+    private boolean occluded( LightSource lightSource,GeoPoint intersection) {
+        Vector lightDir = lightSource.getL(intersection.point);
+        lightDir.scale(-1);
+
+        Ray lightRay= new Ray(lightDir,intersection.point);
+
+        List<GeoPoint> intersectionPoints = intersection.geometry.findGeoIntersection(lightRay);
+
+        return (intersectionPoints ==null);
+
     }
 
 
