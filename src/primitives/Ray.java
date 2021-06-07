@@ -18,12 +18,11 @@ public class Ray {
     }
     public Ray(Point3D head, Vector direction, Vector normal)
     {
-        if (normal.dotProduct(direction) < 0)
-            head.add(normal.scale(-DELTA));
-        else if (normal.dotProduct(direction) > 0)
-            head.add(normal.scale(DELTA));
+
+        Vector delta = normal.scale(normal.dotProduct(direction) > 0 ? DELTA : - DELTA);
+        Point3D tempPoint = head.add(delta);
         dir = direction.normalize();
-        p0 = head;
+        p0 = tempPoint;
     }
     @Override
     public boolean equals(Object obj) {
