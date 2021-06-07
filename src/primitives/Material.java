@@ -2,10 +2,10 @@ package primitives;
 
 public class Material {
     public int nShininess =0;
-   public double kD =0d;
+    public double kD =0d;
     public double kS =0d;
-    public   double kT =0d;
-    public   double kR =0d;
+    public double kT =0d;
+    public double kR =0d;
 
     public Material setkR(double kR) {
         this.kR = kR;

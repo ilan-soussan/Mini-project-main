@@ -8,10 +8,22 @@ import geometries.Intersectable.GeoPoint;
 public class Ray {
     Point3D p0;
     Vector dir;
+
+    private static final double DELTA = 0.1;
+
     public Ray(Vector vector,Point3D point)
     {
         dir =vector.normalize();
         p0 = point;
+    }
+    public Ray(Point3D head, Vector direction, Vector normal)
+    {
+        if (normal.dotProduct(direction) < 0)
+            head.add(normal.scale(-DELTA));
+        else if (normal.dotProduct(direction) > 0)
+            head.add(normal.scale(DELTA));
+        dir = direction.normalize();
+        p0 = head;
     }
     @Override
     public boolean equals(Object obj) {
