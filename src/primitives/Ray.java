@@ -18,7 +18,6 @@ public class Ray {
     }
     public Ray(Point3D head, Vector direction, Vector normal)
     {
-
         Vector delta = normal.scale(normal.dotProduct(direction) > 0 ? DELTA : - DELTA);
         Point3D tempPoint = head.add(delta);
         dir = direction.normalize();
