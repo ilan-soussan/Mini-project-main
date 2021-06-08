@@ -119,4 +119,51 @@ public class ReflectionRefractionTests {
 		render.renderImage();
 		render.writeToImage();
 	}
+	@Test
+	public void trianglesTransparentSphereT1() {
+		Camera camera = new Camera(new Point3D(0, 0, 10000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+				.setViewPlaneSize(2500, 2500).setDistance(10000); //
+
+		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.black), 0.30));
+
+
+		scene.geometries.add( //
+				new Sphere(400, new Point3D(-950, -900, -1000)) //
+						.setEmission(new Color(0, 0, 100)) //
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20).setkT(0.5)),
+				new Sphere(200, new Point3D(-900, -800, -900)) //
+						.setEmission(new Color(20, 60, 90)) //
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
+				new Triangle(new Point3D(1500, -1500, -1500), new Point3D(-1500, 1500, -1500),
+					new Point3D(670, 670, 3000)) //
+					.setEmission(new Color(20, 20, 20)) //
+					.setMaterial(new Material().setkR(1)),
+				new Triangle(new Point3D(1500, -1500, -1500), new Point3D(-1500, 1500, -1500),
+						new Point3D(-1500, -1500, -2000)) //
+						.setEmission(new Color(20, 20, 20)) //
+						.setMaterial(new Material().setkR(0.001)),
+		new Triangle(new Point3D(-700, -1150, -1000), new Point3D(-1000, -900, -1000), new Point3D(-1200, -1100, -800)) //
+				.setEmission(new Color(java.awt.Color.black)) //
+				.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)), //
+		new Sphere(200, new Point3D(-600, -700, -1000)) //
+				.setEmission(new Color(java.awt.Color.BLUE)) //
+				.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setkT(0.6)));
+
+		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(-600, -700, -1000), new Vector(0, 0, -1)) //
+				.setKl(4E-5).setKq(2E-7));
+		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(600, 700, 1000), new Vector(0, 0, -1)) //
+				.setKl(4E-5).setKq(2E-7));
+
+		scene.lights.add(new DirectionalLight(new Color(700, 400, 500), new Vector(0, 0, -1))); //
+
+		ImageWriter imageWriter = new ImageWriter("refractionShadowT1", 600, 600);
+		Render render = new Render() //
+				.setImageWriter(imageWriter) //
+				.setCamera(camera) //
+				.setRayTracerBase(new RayTracerBasic(scene));
+
+		render.renderImage();
+		render.writeToImage();
+	}
+
 }

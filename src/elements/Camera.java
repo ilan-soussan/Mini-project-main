@@ -52,6 +52,18 @@ public class Camera {
         Distance = distance;
         return this;
     }
+    /*
+    public Camera rotateCamera(Point3D newCamPoint,double angleRadXY,double angleRadYZ)
+    {
+        point =newCamPoint;
+        if(!isZero(alignZero(Math.cos(angleRadXY))))
+        {
+
+        }
+    }*/
+
+
+
 
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
         //image center
