@@ -1,6 +1,7 @@
 /**
  * 
- */
+ *//*
+
 package unittests;
 
 import static org.junit.Assert.*;
@@ -14,16 +15,20 @@ import primitives.Vector;
 import primitives.Point3D;
 import geometries.Tube;
 
+*/
 /**
  * Testing Tubes
  * 
  * @author Itamar and Raz
  *
- */
+ *//*
+
 public class TubeTest {
-	/**
+	*/
+/**
 	 * Test method for {@link geometries.Tube#getNormal(primitives.Point3D)}.
-	 */ 
+	 *//*
+
 	@Test
 	public void testGetNormal() {
 		// ============ Equivalence Partitions Tests ==============
@@ -39,9 +44,11 @@ public class TubeTest {
 		 // TC11: test the point is in front of the head of the foundation
 		assertEquals(new Vector(1,0,0),t.getNormal(check2));
 	}
-	/**
+	*/
+/**
 	 * Test method for {@link geometries.Tube#findIntersections(primitives.Point3D)}.
-	 */ 
+	 *//*
+
 	@Test
 	public void testFindIntersersections() {	
 		Tube t=new Tube(new Ray(new Point3D(0,0,1),new Vector(0,0,1)),1d);
@@ -66,3 +73,4 @@ public class TubeTest {
 		//
 	}
 }
+*/
