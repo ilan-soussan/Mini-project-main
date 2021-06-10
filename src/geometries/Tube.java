@@ -47,52 +47,52 @@ public class Tube extends Geometry{
         double a=0;
         double b=0;
         double c=0;
-        if(ray.getP0().equals(axisRay.getP0()))
+        if(ray.getRayPoint().equals(axisRay.getRayPoint()))
         {
-            if(ray.getDir().equals(axisRay.getDir()))return null;
+            if(ray.getRayDir().equals(axisRay.getRayDir()))return null;
             else
             {
-                if(Util.isZero(ray.getDir().dotProduct(axisRay.getDir())))return new ArrayList<GeoPoint>(Arrays.asList(new GeoPoint(this,ray.getPoint(radius))));
-                else return new ArrayList<GeoPoint>(Arrays.asList(new GeoPoint(this,ray.getPoint(radius/Math.sqrt((ray.getDir().subtract(axisRay.getDir().scale
-                        (ray.getDir().dotProduct(axisRay.getDir())/axisRay.getDir().lengthSquared()))).lengthSquared())))));
+                if(Util.isZero(ray.getRayDir().dotProduct(axisRay.getRayDir())))return new ArrayList<GeoPoint>(Arrays.asList(new GeoPoint(this,ray.getPoint(radius))));
+                else return new ArrayList<GeoPoint>(Arrays.asList(new GeoPoint(this,ray.getPoint(radius/Math.sqrt((ray.getRayDir().subtract(axisRay.getRayDir().scale
+                        (ray.getRayDir().dotProduct(axisRay.getRayDir())/axisRay.getRayDir().lengthSquared()))).lengthSquared())))));
             }
         }
-        if(Util.isZero(ray.getDir().dotProduct(axisRay.getDir())))
+        if(Util.isZero(ray.getRayDir().dotProduct(axisRay.getRayDir())))
         {
-            a=ray.getDir().lengthSquared();
-            if(Util.isZero(ray.getP0().subtract(axisRay.getP0()).dotProduct(axisRay.getDir())))
+            a=ray.getRayDir().lengthSquared();
+            if(Util.isZero(ray.getRayPoint().subtract(axisRay.getRayPoint()).dotProduct(axisRay.getRayDir())))
             {
-                b=2*ray.getP0().subtract(axisRay.getP0()).dotProduct(ray.getDir());
-                c=ray.getP0().subtract(axisRay.getP0()).lengthSquared()-radius*radius;
+                b=2*ray.getRayPoint().subtract(axisRay.getRayPoint()).dotProduct(ray.getRayDir());
+                c=ray.getRayPoint().subtract(axisRay.getRayPoint()).lengthSquared()-radius*radius;
             }
             else
             {
-                b=2*ray.getDir().dotProduct(ray.getP0().subtract(axisRay.getP0()).subtract(this.axisRay.getDir().scale(ray.getP0().subtract(axisRay.getP0()).dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())));
-                c=ray.getP0().subtract(axisRay.getP0()).subtract(this.axisRay.getDir().scale(ray.getP0().subtract(axisRay.getP0()).dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())).lengthSquared()-radius*radius;
+                b=2*ray.getRayDir().dotProduct(ray.getRayPoint().subtract(axisRay.getRayPoint()).subtract(this.axisRay.getRayDir().scale(ray.getRayPoint().subtract(axisRay.getRayPoint()).dotProduct(this.axisRay.getRayDir())/this.axisRay.getRayDir().lengthSquared())));
+                c=ray.getRayPoint().subtract(axisRay.getRayPoint()).subtract(this.axisRay.getRayDir().scale(ray.getRayPoint().subtract(axisRay.getRayPoint()).dotProduct(this.axisRay.getRayDir())/this.axisRay.getRayDir().lengthSquared())).lengthSquared()-radius*radius;
             }
         }
-        else if(Util.isZero(ray.getP0().subtract(axisRay.getP0()).dotProduct(axisRay.getDir())))
+        else if(Util.isZero(ray.getRayPoint().subtract(axisRay.getRayPoint()).dotProduct(axisRay.getRayDir())))
         {
             try {
-                a=ray.getDir().subtract(this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())).lengthSquared();
+                a=ray.getRayDir().subtract(this.axisRay.getRayDir().scale(ray.getRayDir().dotProduct(this.axisRay.getRayDir())/this.axisRay.getRayDir().lengthSquared())).lengthSquared();
 
             } catch (IllegalArgumentException e) {
                 return null;
             }
-            b= 2*ray.getDir().subtract(this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared())).dotProduct(ray.getP0().subtract(axisRay.getP0()));
-            c=-radius*radius+ray.getP0().subtract(axisRay.getP0()).lengthSquared();
+            b= 2*ray.getRayDir().subtract(this.axisRay.getRayDir().scale(ray.getRayDir().dotProduct(this.axisRay.getRayDir())/this.axisRay.getRayDir().lengthSquared())).dotProduct(ray.getRayPoint().subtract(axisRay.getRayPoint()));
+            c=-radius*radius+ray.getRayPoint().subtract(axisRay.getRayPoint()).lengthSquared();
         }
         else{
-            Vector projectedRayVector=this.axisRay.getDir().scale(ray.getDir().dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared());;
-            Vector pRaySubP0=pRaySubP0=ray.getP0().subtract(axisRay.getP0());
-            Vector projectedDPVector=this.axisRay.getDir().scale(pRaySubP0.dotProduct(this.axisRay.getDir())/this.axisRay.getDir().lengthSquared());
+            Vector projectedRayVector=this.axisRay.getRayDir().scale(ray.getRayDir().dotProduct(this.axisRay.getRayDir())/this.axisRay.getRayDir().lengthSquared());;
+            Vector pRaySubP0=pRaySubP0=ray.getRayPoint().subtract(axisRay.getRayPoint());
+            Vector projectedDPVector=this.axisRay.getRayDir().scale(pRaySubP0.dotProduct(this.axisRay.getRayDir())/this.axisRay.getRayDir().lengthSquared());
             try {
-                a=ray.getDir().subtract(projectedRayVector).lengthSquared();
+                a=ray.getRayDir().subtract(projectedRayVector).lengthSquared();
             } catch (IllegalArgumentException e) {
                 a=0;
             }
             try {
-                b=2*ray.getDir().subtract(projectedRayVector).dotProduct(pRaySubP0.subtract(projectedDPVector));
+                b=2*ray.getRayDir().subtract(projectedRayVector).dotProduct(pRaySubP0.subtract(projectedDPVector));
             } catch (IllegalArgumentException e) {
                 b=0;
             }
