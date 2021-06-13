@@ -90,4 +90,36 @@ public class Camera {
         return ray;
 
     }
+
+    public Ray constructRayThroughPixelSuperSampling(int nX, int nY, int i, int j, int k, int f) {
+        //image center
+        Point3D Pc = point.add(Vtowards.scale(Distance));
+        //Ratio(pixel width & height)
+        double Ry = Height/nY;
+        double Rx = Width/nX;
+
+
+        if(!(k==0))
+            Pc = Pc.add(new Vector(Rx/3,Rx/3,Rx/3).scale(k));
+        if(!(f==0))
+            Pc = Pc.add(new Vector(Ry/3,Ry/3,Ry/3).scale(f));
+
+        //Pixel[i,j] center
+
+        double Yi = ((((i-(nY-1)/2d)*Ry)));
+        double Xj = ((((j-(nX-1)/2d)*Rx)));
+        Point3D Pij = Pc;
+
+
+        if(!isZero(Xj))
+            Pij = Pij.add(Vright.scale(Xj));
+        if(!isZero(Yi))
+            Pij = Pij.add(Vup.scale(Yi));
+
+
+        Vector Vij = Pij.subtract(point);
+        Ray ray = new Ray(Vij.normalize(),point);
+
+        return ray;
+    }
 }

@@ -65,6 +65,39 @@ public class Render {
         }
 
     }
+    public void renderImageSuperSampling() {
+        if (imageWriter == null)
+            throw new MissingResourceException("imageWriter is null", "Render", "imageWriter");
+        if (camera == null)
+            throw new MissingResourceException("camera is null", "Render", "Camera");
+        if (rayTracerBase == null)
+            throw new MissingResourceException("rayTracerBase is null", "Render", "rayTracerBase");
+
+
+
+        int x = imageWriter.getNx();
+        int y = imageWriter.getNy();
+
+
+        for (int i=0;i<x;i++)
+        {
+            for (int j =0;j<y;++j)
+            {
+                Color pixelColor = Color.BLACK;
+                for (int k =-1;k<2;++k)
+                {
+                    for (int f =-1;f<2;++f)
+                    {
+                        Ray pixelRay = camera.constructRayThroughPixelSuperSampling(x,y,i,j,k,f);
+                        pixelColor= pixelColor.add(rayTracerBase.traceRay(pixelRay));
+                    }
+                }
+                pixelColor =pixelColor.reduce(9);
+                imageWriter.writePixel(i,j,pixelColor);
+            }
+        }
+    }
+
 
     public void printGrid(int interval, Color color)
     {

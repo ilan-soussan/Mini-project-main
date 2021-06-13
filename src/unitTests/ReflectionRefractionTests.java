@@ -167,6 +167,48 @@ public class ReflectionRefractionTests {
 		render.renderImage();
 		render.writeToImage();
 	}
+	@Test
+	public void pintest() {
+		Camera camera = new Camera(new Point3D(-10, 0, 0), new Vector(1, 0, 0), new Vector(0, 0, -1)) //
+				.setViewPlaneSize(2500, 2500).setDistance(100); //
+
+		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.black), 0.30));
+
+
+		scene.geometries.add( //
+				new Sphere(10, new Point3D(3, 0, 15)) //
+						.setEmission(new Color(java.awt.Color.WHITE)) //
+						.setMaterial(new Material().setKd(0.0).setKs(0.0).setShininess(20)),
+				new Sphere(7.5, new Point3D(3, 0, 7.5)) //
+						.setEmission(new Color(java.awt.Color.BLUE)) //
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
+				new Sphere(6, new Point3D(3, 0, 3.8)) //
+						.setEmission(new Color(java.awt.Color.RED)) //
+						.setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30)),
+				new Sphere(7.5, new Point3D(3, 0, 22.5)) //
+						.setEmission(new Color(java.awt.Color.YELLOW)) //
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
+				new Sphere(6, new Point3D(3, 0, 26.3)) //
+						.setEmission(new Color(java.awt.Color.PINK)) //
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
+				new Sphere(5, new Point3D(3, 0, 50)) //
+						.setEmission(new Color(java.awt.Color.GREEN)) //
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
+				new Tube(5,new Ray(new Vector(0,0,5),new Point3D(30,0,0)))
+						.setEmission(new Color(java.awt.Color.WHITE)) //
+						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)));
+
+		scene.lights.add(new DirectionalLight(new Color(java.awt.Color.YELLOW), new Vector(0, 1,0))); //
+
+		ImageWriter imageWriter = new ImageWriter("pin", 600, 600);
+		Render render = new Render() //
+				.setImageWriter(imageWriter) //
+				.setCamera(camera) //
+				.setRayTracerBase(new RayTracerBasic(scene));
+
+		render.renderImage();
+		render.writeToImage();
+	}
 
 
 }
