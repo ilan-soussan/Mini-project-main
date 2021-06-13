@@ -53,7 +53,7 @@ public class PinTest {
         return new Vector(x*c - y*s, x*s + y*c, z);
     }
 
-    double xAngle = Math.toRadians(0);//Looking down 4.5 degrees.
+    double xAngle = Math.toRadians(0);//Looking down 4.5 degrees.(-5)
     double yAngle = Math.toRadians(15);//Looking 8 degrees to the left.
     double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place ,
     // and spin his legs around him without turning him away from what hes looking at.
@@ -66,18 +66,18 @@ public class PinTest {
 
     @Test
     public void pinTest() {
-        Camera camera = new Camera(new Point3D(-1200, 50, 100), toward, up) //
-                .setViewPlaneSize(150, 150).setDistance(600);
+        Camera camera = new Camera(new Point3D(-1900, 50, 100), toward, up) //(y:-130)
+                .setViewPlaneSize(150, 150).setDistance(300);
         /*Camera camera = new Camera(new Point3D(-1000, 50, -150), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
                 .setViewPlaneSize(150, 150).setDistance(800);*/
 
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.BLACK), 0.30));
         Pin p1 = new Pin(new Point3D(50,50,-150),new Point3D(50,50,-140));
-        Pin p2 = new Pin(new Point3D(100,70,-150),new Point3D(100,70,-140));
-        Pin p3 = new Pin(new Point3D(100,30,-150),new Point3D(100,30,-140));
-        Pin p4 = new Pin(new Point3D(150,90,-150),new Point3D(150,90,-140));
+        Pin p2 = new Pin(new Point3D(100,90,-150),new Point3D(100,90,-140));
+        Pin p3 = new Pin(new Point3D(100,10,-150),new Point3D(100,10,-140));
+        Pin p4 = new Pin(new Point3D(150,130,-150),new Point3D(150,130,-140));
         Pin p5 = new Pin(new Point3D(150,50,-150),new Point3D(150,50,-140));
-        Pin p6 = new Pin(new Point3D(150,10,-150),new Point3D(150,10,-140));
+        Pin p6 = new Pin(new Point3D(150,-30,-150),new Point3D(150,-30,-140));
 
 
         List<Pin> Plist = List.of(p1,p2,p3,p4,p5,p6);
@@ -91,17 +91,47 @@ public class PinTest {
 
         scene.geometries.add(
 
-                new Triangle(new Point3D(200,0,-150),new Point3D(-2000,100,-150),new Point3D(-2000,0,-150))
+                new Triangle(new Point3D(200,-50,-150),new Point3D(-1200,150,-150),new Point3D(-1200,-50,-150))
                .setEmission(new Color(java.awt.Color.ORANGE))
-               .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0)),
+               .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0.3)),
 
-                new Triangle(new Point3D(200,0,-150),new Point3D(-2000,100,-150),new Point3D(200,100,-150))
+                new Triangle(new Point3D(200,-50,-150),new Point3D(-1200,150,-150),new Point3D(200,150,-150))
                 .setEmission(new Color(java.awt.Color.ORANGE))
-                .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0)));
+                .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0.3)),
 
-                /*new Plane(new Point3D(0, 0, -155), new Point3D(1, 1, -155), new Point3D(2, 0, -155))
-                .setEmission(new Color(java.awt.Color.PINK))
-                .setMaterial(new Material().setKd(0.0).setKs(0.0).setShininess(20).setkR(0.5)));*/
+                new Triangle(new Point3D(200,-50,-150),new Point3D(-1200,-50,-130),new Point3D(-1200,-50,-150))
+                        .setEmission(new Color(java.awt.Color.BLACK))
+                        .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0)),
+
+                new Triangle(new Point3D(-1200,-50,-130),new Point3D(200,-50,-150),new Point3D(200,-50,-130))
+                        .setEmission(new Color(java.awt.Color.BLACK))
+                        .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0)),
+
+                new Triangle(new Point3D(200,150,-150),new Point3D(-1200,150,-150),new Point3D(200,150,-130))
+                        .setEmission(new Color(java.awt.Color.BLACK))
+                        .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200)),
+
+                new Triangle(new Point3D(-1200,150,-150),new Point3D(-1200,150,-130),new Point3D(200,150,-130))
+                        .setEmission(new Color(java.awt.Color.BLACK))
+                        .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200)),
+
+                new Plane(new Point3D(0, 0, -155), new Point3D(1, 1, -155), new Point3D(2, 0, -155))
+                .setEmission(new Color(java.awt.Color.GRAY))
+                .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20)),
+
+                 new Plane(new Point3D(0, 250, -155), new Point3D(1, 250, -3), new Point3D(2, 250, -55))
+                .setEmission(new Color(java.awt.Color.GREEN))
+                .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20)),
+
+                new Plane(new Point3D(0, -170, -155), new Point3D(1, -170, -55), new Point3D(2, -170, -5))
+                .setEmission(new Color(java.awt.Color.GREEN))
+                .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20)),
+
+                new Sphere(20,new Point3D(-1200,50,-130))
+                .setEmission(new Color(java.awt.Color.RED))
+                .setMaterial(new Material().setkR(0.5).setKs(0.5).setShininess(50)));
+
+
 
                 /*new Plane(new Point3D(0, 0, -150), new Point3D(150, 0, 0), new Point3D(-150, 0, 0))
                         .setEmission(new Color(java.awt.Color.ORANGE))
@@ -130,10 +160,10 @@ public class PinTest {
 
         scene.lights.add(new DirectionalLight(new Color(java.awt.Color.YELLOW), new Vector(0, 1,0)));
 
-        for (int i = 0; i <= 5;i++){
-            scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(i * -100,-10,-130),new Vector(0,1,-1))
+        for (int i = 0; i <= 11;i++){
+            scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(i * -100,-44,-130),new Vector(0,1,-1))
                     .setKl(0.0001).setKq(0.00005));
-            scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(i * -100,110,-130),new Vector(0,-1,-1))
+            scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(i * -100,144,-130),new Vector(0,-1,-1))
                     .setKl(0.0001).setKq(0.00005));
         }
 
