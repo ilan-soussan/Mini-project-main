@@ -15,7 +15,6 @@ import java.util.List;
 
 public class Pin{
     Point3D Location;
-    //Cylinder Body;
     public Sphere Head, BigS,MediumSUnder,MediumSOn,SmallSUnder,SmallSOn,Line;
     public List<Sphere> list;
     public Pin (Point3D location,Point3D middle)
@@ -35,7 +34,7 @@ public class Pin{
         Point3D SOcenter = new Point3D(middle.getX(),middle.getY(), middle.getZ() + 10);
         SmallSOn = new Sphere(7,SOcenter);
         SmallSOn.setEmission(new Color(java.awt.Color.WHITE));
-        Head = new Sphere(7,new Point3D(location.getX(),location.getY(), location.getZ() + 35));
+        Head = new Sphere(7,new Point3D(location.getX(),location.getY(), location.getZ() + 34));
         Head.setEmission(new Color(java.awt.Color.WHITE));
         Line = new Sphere(4,new Point3D(location.getX(),location.getY(),location.getZ() + 30));
         Line.setEmission(new Color(java.awt.Color.RED));
