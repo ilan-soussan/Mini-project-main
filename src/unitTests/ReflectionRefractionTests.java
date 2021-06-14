@@ -206,7 +206,7 @@ public class ReflectionRefractionTests {
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
 
-		render.renderImageSuperSampling(1,true);
+		render.renderImage();
 		render.writeToImage();
 	}
 

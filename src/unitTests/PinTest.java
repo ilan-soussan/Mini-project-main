@@ -237,14 +237,14 @@ public class PinTest {
         scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-500,0,-130),new Vector(0,1,-1))
                 .setKl(0.0001).setKq(0.0000005));*/
 
-        ImageWriter imageWriter = new ImageWriter("Picture", 3000, 3000);
+        ImageWriter imageWriter = new ImageWriter("Picture", 500, 500);
         Render render = new Render() //
         .setImageWriter(imageWriter) //
         .setCamera(camera) //
         .setRayTracerBase(new RayTracerBasic(scene));
 
-        render.renderImageSuperSampling(2,true);
-        //render.renderImage();
+        //render.renderImageSuperSampling(2,true);
+        render.renderImage();
         render.writeToImage();
 
     }
