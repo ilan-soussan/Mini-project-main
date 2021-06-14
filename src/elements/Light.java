@@ -3,7 +3,9 @@ package elements;
 import primitives.Color;
 
 /**
- * Light abstract class
+ * Light abstract class that lights source will extends
+ * @params intensity
+ * all lights will have intencity (a colour)
  */
 abstract class Light {
 private Color intensity;
@@ -18,7 +20,7 @@ private Color intensity;
 }
 
     /**
-     *
+     * getter of intencity
      * @return intensity
      */
     public Color getIntensity() {

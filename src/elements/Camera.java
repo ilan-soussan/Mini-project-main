@@ -6,6 +6,13 @@ import java.util.LinkedList;
 import java.util.List;
 import static primitives.Util.*;
 
+/**
+ *  class that we will use as our camera.
+ *  @params point, Vup, Vtowards, Vright, width, height, distance
+ *  @author Ilan and didi
+ *
+ */
+
 public class Camera {
     private Point3D point;
     private Vector Vup;
@@ -16,38 +23,77 @@ public class Camera {
     double Height;
     double Distance;
 
+    /**
+     * getter for Vtowards
+     * @return Vector
+     */
     public Vector getVtowards() {
         return Vtowards;
     }
 
+    /**
+     * getter for Vright
+     * @return Vector
+     */
     public Vector getVright() {
         return Vright;
     }
+
+    /**
+     * getter for Vup
+     * @return Vector
+     */
 
     public Vector getVup() {
         return Vup;
     }
 
+    /**
+     * getter for point of the camera
+     * @return point
+     */
+
     public Point3D getPoint() {
         return point;
     }
 
-    public Camera(Point3D cameraPoint, Vector cameraVtowards, Vector cameraVup) {
+
+    /**
+     * @param cameraPoint
+     * @param cameraVtowards
+     * @param cameraVup
+     *
+     * constructor for our camera check if the Vup and towards are really 90 degrees else it wont work
+     * next we calculate vright(Vup*Vtoward)
+     * and put all the prams in the camera params after normalize the voctors
+     */
+    public Camera (Point3D cameraPoint, Vector cameraVtowards, Vector cameraVup) {
         if (!Util.isZero(cameraVup.dotProduct(cameraVtowards))) {
-            throw new IllegalArgumentException("Vectors not vertical to each other");
+            throw new IllegalArgumentException("Vectors not vertical to each other"); // check if the vectors are 90 degrees
         }
-        Vright = cameraVup.crossProduct(cameraVtowards).normalize();
+        Vright = cameraVup.crossProduct(cameraVtowards).normalize(); // calculate Vright
         Vtowards = cameraVtowards.normalize();
         Vup = cameraVup.normalize();
         point = cameraPoint;
     }
 
+    /**
+     * setter of the viewPlanesize
+     * @param width
+     * @param height
+     * @return a camera
+     */
     public Camera setViewPlaneSize(double width, double height) {
         Width = width;
         Height = height;
         return this;
     }
 
+    /**
+     * setter of the distance of the camera
+     * @param distance
+     * @return a camera
+     */
     public Camera setDistance(double distance) {
         Distance = distance;
         return this;
@@ -61,8 +107,6 @@ public class Camera {
 
         }
     }*/
-
-
 
 
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
