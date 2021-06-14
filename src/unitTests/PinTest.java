@@ -156,7 +156,7 @@ public class PinTest {
                 .setCamera(camera) //
                 .setRayTracerBase(new RayTracerBasic(scene));
 
-        //render.renderImageSuperSampling();
+       // render.renderImageSuperSampling(2,true);
         render.renderImage();
         render.writeToImage();
 
