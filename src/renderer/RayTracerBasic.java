@@ -18,7 +18,8 @@ public class RayTracerBasic extends RayTracerBase {
         super(aScene);
     }
 
-    private GeoPoint findClosestIntersection(Ray ray) {
+    @Override
+    public GeoPoint findClosestIntersection(Ray ray) {
         List<GeoPoint> list = scene.geometries.findGeoIntersection(ray);
         if(list == null)
             return null;

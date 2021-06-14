@@ -13,4 +13,5 @@ public abstract class RayTracerBase
         scene = myScene;
     }
     public abstract Color traceRay(Ray ray);
-}
+    public abstract GeoPoint findClosestIntersection(Ray ray);
+    }

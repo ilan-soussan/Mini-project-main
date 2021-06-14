@@ -200,13 +200,13 @@ public class ReflectionRefractionTests {
 
 		scene.lights.add(new DirectionalLight(new Color(java.awt.Color.YELLOW), new Vector(0, 1,0))); //
 
-		ImageWriter imageWriter = new ImageWriter("pin", 600, 600);
+		ImageWriter imageWriter = new ImageWriter("pin", 1500, 1500);
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
 
-		render.renderImage();
+		render.renderImageSuperSampling(1,true);
 		render.writeToImage();
 	}
 

@@ -135,7 +135,11 @@ public class Camera {
 
     }
 
-    public Ray constructRayThroughPixelSuperSampling(int nX, int nY, int i, int j, int k, int f) {
+    public double getDistance() {
+        return Distance;
+    }
+
+    public Ray constructRayThroughPixelSuperSampling(int nX, int nY, int i, int j, int k, int f,int numOfrays) {
         //image center
         Point3D Pc = point.add(Vtowards.scale(Distance));
         //Ratio(pixel width & height)
@@ -144,9 +148,9 @@ public class Camera {
 
 
         if(!(k==0))
-            Pc = Pc.add(new Vector(Rx/3,Rx/3,Rx/3).scale(k));
+            Pc = Pc.add(new Vector(Rx/numOfrays,Rx/numOfrays,Rx/numOfrays).scale(k));
         if(!(f==0))
-            Pc = Pc.add(new Vector(Ry/3,Ry/3,Ry/3).scale(f));
+            Pc = Pc.add(new Vector(Ry/numOfrays,Ry/numOfrays,Ry/numOfrays).scale(f));
 
         //Pixel[i,j] center
 
