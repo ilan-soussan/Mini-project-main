@@ -302,7 +302,8 @@ public class Render {
 /**
 	 * This function renders image's pixel color map from the scene included with
 	 * the Renderer object
-	 *//*
+	 */
+/*
 
 	public void renderImage() {
 		if (imageWriter == null)
