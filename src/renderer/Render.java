@@ -89,35 +89,11 @@ public class Render {
             {
                 Ray pixelRay = camera.constructRayThroughPixel(x,y,i,j);
                 Color pixelColor = rayTracerBase.traceRay(pixelRay);
-
-                Intersectable.GeoPoint point = rayTracerBase.findClosestIntersection(pixelRay);
-                if (point != null)
-                {
-                    double dis = point.point.distance(camera.getPoint());
-                    if(dis<depthOfFieldNum-20||dis>depthOfFieldNum+20)
-                    {
-                        double tempDis = Math.abs(dis-depthOfFieldNum)-20;
-                        double tempReversDis =0;
-                        if(tempDis<20)
-                        {
-                            tempReversDis = (1/(tempDis/20));
-                            pixelColor = pixelColor.scale(tempReversDis);
-                        }
-                        for (int k=i-1;k<i+2&&k<x&&k>0;++k)
-                        {
-                            for(int f = j-1;f<j+2&&f<y&&f>0;f++)
-                            {
-                                Ray tempPixelRay = camera.constructRayThroughPixel(x,y,k,f);
-                                pixelColor = pixelColor.add(rayTracerBase.traceRay(tempPixelRay));
-                            }
-                        }
-                        pixelColor=pixelColor.reduce(9+tempReversDis);
-                    }
-                }
                 imageWriter.writePixel(i,j,pixelColor);
             }
         }
-
+        if (DepthOfField)
+            renderDepthOfField(depthOfFieldNum);
     }
 
 
@@ -148,8 +124,6 @@ public class Render {
                 else
                     pixelColor = pixelColor.reduce(numOfRays * numOfRays);
 
-
-
                 imageWriter.writePixel(i, j, pixelColor);
             }
         }
@@ -171,13 +145,21 @@ public class Render {
                     Color pixelColor = imageWriter.getPixel(i,j);
                     pixelColor = pixelColor.scale(20);
                     double dis = point.point.distance(camera.getPoint());
-                    if (dis < depthOfFieldNum - 20 || dis > depthOfFieldNum + 20) {
+                    if (dis < depthOfFieldNum - 100 || dis > depthOfFieldNum + 100) {
                         double tempDis = Math.abs(dis - depthOfFieldNum) - 20;
                         double tempReversDis = 0;
                         if (tempDis < 20) {
-                            tempReversDis = (1 / (tempDis / 20));
+                            tempReversDis = (1 / (tempDis / 200));
                             pixelColor = pixelColor.scale(tempReversDis);
                         }
+                        else if(tempDis < 50){
+                                tempReversDis = (1 / (tempDis / 150));
+                                pixelColor = pixelColor.scale(tempReversDis);
+                            }
+                        else if(tempDis < 100){
+                            tempReversDis = (1 / (tempDis / 100));
+                        pixelColor = pixelColor.scale(tempReversDis);
+                         }
                         for (int k = i - 1; k < i + 2 && k < x && k > 0; ++k) {
                             for (int f = j - 1; f < j + 2 && f < y && f > 0; f++) {
                                 Ray tempPixelRay = camera.constructRayThroughPixel(x, y, k, f);

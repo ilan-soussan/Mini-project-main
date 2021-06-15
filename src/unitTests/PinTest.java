@@ -50,12 +50,19 @@ public class PinTest {
         double s = Math.sin(angle), c = Math.cos(angle);
         return new Vector(x*c - y*s, x*s + y*c, z);
     }
+    double xAngle = Math.toRadians(0);//Looking down 4.5 degrees.
+    double yAngle = Math.toRadians(10);//Looking 8 degrees to the left.(70)
+    double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place ,
 
+
+
+
+    /*
     double xAngle = Math.toRadians(-5);//Looking down 4.5 degrees.
     double yAngle = Math.toRadians(23);//Looking 8 degrees to the left.(70)
     double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place ,
     // and spin his legs around him without turning him away from what hes looking at.
-
+*/
     Vector toward = RotateZ(RotateY(RotateX(new Vector(1,0,0), xAngle), yAngle), zAngle);
     Vector up = RotateZ(RotateY(RotateX(new Vector(0,0,1), xAngle), yAngle), zAngle);
 
@@ -64,8 +71,11 @@ public class PinTest {
 
     @Test
     public void pinTest() {
+        Camera camera = new Camera(new Point3D(-1500, 50, -50), toward, up) //(-1000,50,740)
+                .setViewPlaneSize(150, 150).setDistance(110);//(110)
+/*
         Camera camera = new Camera(new Point3D(-1800, -110, 175), toward, up) //(-1000,50,740)
-                .setViewPlaneSize(150, 150).setDistance(200);//(110)
+                .setViewPlaneSize(150, 150).setDistance(200);//(110)*/
         /*Camera camera = new Camera(new Point3D(-1000, 50, -150), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
                 .setViewPlaneSize(150, 150).setDistance(800);*/
 
@@ -262,15 +272,16 @@ public class PinTest {
         scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-500,0,-130),new Vector(0,1,-1))
                 .setKl(0.0001).setKq(0.0000005));*/
 
-        ImageWriter imageWriter = new ImageWriter("Picture1", 700, 700);
+        ImageWriter imageWriter = new ImageWriter("Picture1", 300, 300);
         Render render = new Render() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
                 .setRayTracerBase(new RayTracerBasic(scene));
 
         //render.renderImageSuperSampling(3,false,2);
-        //render.renderImage(true,camera.getPoint().distance(new Point3D(50,50,-140)));
         render.renderImage();
+        render.renderDepthOfField(camera.getPoint().distance(new Point3D(-1200,50,-129))+20);
+       // render.renderImage();
         render.writeToImage();
 
     }
