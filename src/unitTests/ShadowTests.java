@@ -40,7 +40,7 @@ public class ShadowTests {
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
 		//render.renderImage();
-		render.renderImageSuperSampling(2,false,950);
+		render.renderImageSuperSampling(2);
 		//render.renderImageSuperSampling(2,true,950);
 		render.writeToImage();
 	}

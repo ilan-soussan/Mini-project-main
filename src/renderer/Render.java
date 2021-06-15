@@ -121,7 +121,7 @@ public class Render {
     }
 
 
-    public void renderImageSuperSampling(int numOfRays,boolean DepthOfField,double depthOfFieldNum) {
+    public void renderImageSuperSampling(int numOfRays) {
         if (imageWriter == null)
             throw new MissingResourceException("imageWriter is null", "Render", "imageWriter");
         if (camera == null)
@@ -149,32 +149,46 @@ public class Render {
                     pixelColor = pixelColor.reduce(numOfRays * numOfRays);
 
 
-                if (DepthOfField) {
-                    Ray pixelRay = camera.constructRayThroughPixel(x, y, i, j);
-                    Intersectable.GeoPoint point = rayTracerBase.findClosestIntersection(pixelRay);
-                    if (point != null) {
-                        double dis = point.point.distance(camera.getPoint());
-                        if (dis < depthOfFieldNum - 20 || dis > depthOfFieldNum + 20) {
-                            double tempDis = Math.abs(dis - depthOfFieldNum) - 20;
-                            double tempReversDis = 0;
-                            if (tempDis < 20) {
-                                tempReversDis = (1 / (tempDis / 20));
-                                pixelColor = pixelColor.scale(tempReversDis);
-                            }
-                            for (int k = i - 1; k < i + 2 && k < x && k > 0; ++k) {
-                                for (int f = j - 1; f < j + 2 && f < y && f > 0; f++) {
-                                    Ray tempPixelRay = camera.constructRayThroughPixel(x, y, k, f);
-                                    pixelColor = pixelColor.add(rayTracerBase.traceRay(tempPixelRay));
-                                }
-                            }
-                            pixelColor = pixelColor.reduce(9 + tempReversDis);
 
-                        }
-                    }
-                }
                 imageWriter.writePixel(i, j, pixelColor);
             }
         }
+    }
+
+
+
+    public void renderDepthOfField(double depthOfFieldNum) {
+
+        int x = imageWriter.getNx();
+        int y = imageWriter.getNy();
+
+
+        for (int i = 0; i < x; i++)
+            for (int j = 0; j < y; j++) {
+                Ray pixelRay = camera.constructRayThroughPixel(x, y, i, j);
+                Intersectable.GeoPoint point = rayTracerBase.findClosestIntersection(pixelRay);
+                if (point != null) {
+                    Color pixelColor = imageWriter.getPixel(i,j);
+                    pixelColor = pixelColor.scale(20);
+                    double dis = point.point.distance(camera.getPoint());
+                    if (dis < depthOfFieldNum - 20 || dis > depthOfFieldNum + 20) {
+                        double tempDis = Math.abs(dis - depthOfFieldNum) - 20;
+                        double tempReversDis = 0;
+                        if (tempDis < 20) {
+                            tempReversDis = (1 / (tempDis / 20));
+                            pixelColor = pixelColor.scale(tempReversDis);
+                        }
+                        for (int k = i - 1; k < i + 2 && k < x && k > 0; ++k) {
+                            for (int f = j - 1; f < j + 2 && f < y && f > 0; f++) {
+                                Ray tempPixelRay = camera.constructRayThroughPixel(x, y, k, f);
+                                pixelColor = pixelColor.add(rayTracerBase.traceRay(tempPixelRay));
+                            }
+                        }
+                        pixelColor = pixelColor.reduce(9 + tempReversDis+20);
+                        imageWriter.writePixel(i, j, pixelColor);
+                    }
+                }
+            }
     }
 
 

@@ -90,5 +90,7 @@ public class ImageWriter {
 	public void writePixel(int xIndex, int yIndex, Color color) {
 		image.setRGB(xIndex, yIndex, color.getColor().getRGB());
 	}
-
+	public Color getPixel(int xIndex, int yIndex) {
+		 return new Color(new java.awt.Color(image.getRGB(xIndex, yIndex)));
+	}
 }

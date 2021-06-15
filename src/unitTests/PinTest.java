@@ -243,8 +243,9 @@ public class PinTest {
         .setCamera(camera) //
         .setRayTracerBase(new RayTracerBasic(scene));
 
-        //render.renderImageSuperSampling(2,true);
-        render.renderImage();
+        render.renderImage(true,camera.getPoint().distance(new Point3D(50,50,-140)));
+       // render.renderImageSuperSampling(2,false,950);
+        //render.renderImage();
         render.writeToImage();
 
     }
