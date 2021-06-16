@@ -1,16 +1,7 @@
 package geometries;
 
-import elements.AmbientLight;
-import elements.Camera;
-import elements.DirectionalLight;
-import org.junit.Test;
 import primitives.*;
-import renderer.ImageWriter;
-import renderer.RayTracerBasic;
-import renderer.Render;
 
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Pin{

@@ -6,6 +6,7 @@ import elements.*;
 import geometries.*;
 import primitives.*;
 import renderer.*;
+import renderer.RenderMultiThread;
 import scene.Scene;
 
 /**
@@ -41,7 +42,7 @@ public class LightsTests {
 		scene1.lights.add(new DirectionalLight(new Color(500, 300, 0), new Vector(1, 1, -1)));
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereDirectional", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracerBase(new RayTracerBasic(scene1));
@@ -59,7 +60,7 @@ public class LightsTests {
 				.setKl(0.00001).setKq(0.000001));
 
 		ImageWriter imageWriter = new ImageWriter("lightSpherePoint", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracerBase(new RayTracerBasic(scene1));
@@ -77,7 +78,7 @@ public class LightsTests {
 				.setKl(0.00001).setKq(0.00000001));
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereSpot", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracerBase(new RayTracerBasic(scene1));
@@ -95,7 +96,7 @@ public class LightsTests {
 		scene2.lights.add(new DirectionalLight(new Color(300, 150, 150), new Vector(0, 0, -1)));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesDirectional", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracerBase(new RayTracerBasic(scene2));
@@ -114,7 +115,7 @@ public class LightsTests {
 				.setKl(0.0005).setKq(0.0005));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesPoint", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracerBase(new RayTracerBasic(scene2));
@@ -133,7 +134,7 @@ public class LightsTests {
 				.setKl(0.0001).setKq(0.000005));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesSpot", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracerBase(new RayTracerBasic(scene2));
@@ -156,7 +157,7 @@ public class LightsTests {
 				.setKl(0.0001).setKq(0.000005));
 
 		ImageWriter imageWriter = new ImageWriter("lightTrianglesAll", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera2) //
 				.setRayTracerBase(new RayTracerBasic(scene2));
@@ -180,7 +181,7 @@ public class LightsTests {
 
 
 		ImageWriter imageWriter = new ImageWriter("lightSphereAll", 500, 500);
-		Render render = new Render()//
+		RenderMultiThread render = new RenderMultiThread()//
 				.setImageWriter(imageWriter) //
 				.setCamera(camera1) //
 				.setRayTracerBase(new RayTracerBasic(scene1));

@@ -1557,7 +1557,7 @@ public class TeapotTest {
 				.setKq(0.000001));
 
 		ImageWriter imageWriter = new ImageWriter("teapot", 800, 800);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setCamera(camera) //
 				.setImageWriter(imageWriter) //
 				.setRayTracerBase(new RayTracerBasic(scene)); //

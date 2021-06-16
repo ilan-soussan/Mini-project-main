@@ -108,7 +108,14 @@ public class Camera {
         }
     }*/
 
-
+    /**
+     * Get The ray that pass Through Pixel in j,i
+     * @param nX
+     * @param nY
+     * @param j
+     * @param i
+     * @return ray
+     */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
         //image center
         Point3D Pc = point.add(Vtowards.scale(Distance));
@@ -135,27 +142,41 @@ public class Camera {
 
     }
 
+    /**
+     * return the Distance of thee camera
+     * @return Distance
+     */
     public double getDistance() {
         return Distance;
     }
 
-    public Ray constructRayThroughPixelSuperSampling(int nX, int nY, int i, int j, int k, int f,int numOfrays) {
+    /**
+     * Get The ray that pass Through Pixel in j,i with point changes for super sampling
+     * @param nX
+     * @param nY
+     * @param j
+     * @param i
+     * @param k
+     * @param f
+     * @param numOfrays
+     * @return ray
+     */
+    public Ray constructRayThroughPixelSuperSampling(int nX, int nY, int j, int i, int k, int f,int numOfrays) {
         //image center
         Point3D Pc = point.add(Vtowards.scale(Distance));
         //Ratio(pixel width & height)
         double Ry = Height/nY;
         double Rx = Width/nX;
+        //Pixel[i,j] center
 
-
+        // changes the point for super sampling
         if(!(k==0))
             Pc = Pc.add(new Vector(Rx/numOfrays,Rx/numOfrays,Rx/numOfrays).scale(k));
         if(!(f==0))
             Pc = Pc.add(new Vector(Ry/numOfrays,Ry/numOfrays,Ry/numOfrays).scale(f));
 
-        //Pixel[i,j] center
-
-        double Yi = ((((i-(nY-1)/2d)*Ry)));
-        double Xj = ((((j-(nX-1)/2d)*Rx)));
+        double Yi = ((i-(nY-1)/2d)*Ry)*-1;
+        double Xj = ((j-(nX-1)/2d)*Rx)*-1;
         Point3D Pij = Pc;
 
 
@@ -169,5 +190,6 @@ public class Camera {
         Ray ray = new Ray(Vij.normalize(),point);
 
         return ray;
+
     }
 }

@@ -1,10 +1,29 @@
 package primitives;
 
+/**
+ * Vector class.
+ * Represented by Point3D
+ *
+ *
+ *
+ * @author Ilan and didi
+ */
 public class Vector {
+    /**
+     * constructor for the Vector. put the Point as head.
+     * @param head
+     */
     public Vector(Point3D head)
     {
         this.head = head;
     }
+
+    /**
+     * creats new point from the x,y,z and puts as head.
+     * @param X
+     * @param Y
+     * @param Z
+     */
     public Vector(Double X,Double Y,Double Z)
     {
         Point3D tempPoint = new Point3D((double)X,(double)Y,(double)Z);
@@ -12,6 +31,12 @@ public class Vector {
             throw new IllegalArgumentException("Vector equals to zero");
         head = tempPoint;
     }
+    /**
+     * creats new point from the x,y,z and puts as head.
+     * @param X
+     * @param Y
+     * @param Z
+     */
     public Vector(int X,int Y,int Z)
     {
 
@@ -20,6 +45,12 @@ public class Vector {
             throw new IllegalArgumentException("Vector equals to zero");
         head = tempPoint;
     }
+    /**
+     * creats new point from the x,y,z and puts as head.
+     * @param X
+     * @param Y
+     * @param Z
+     */
     public Vector(Coordinate X,Coordinate Y,Coordinate Z)
     {
         Point3D tempPoint = new Point3D(X.coord,Y.coord,Z.coord);
@@ -29,21 +60,44 @@ public class Vector {
     }
     Point3D head;
 
+    /**
+     * subtract, return new Vector that is the subtract of them both.
+     * @param v
+     * @return new Vector
+     */
     public Vector subtract(Vector v)
     {
         Vector tempVector = new Vector(head.getX()-v.head.getX(), head.getY()-v.head.getY(), head.getZ()-v.head.getZ());
         return  tempVector;
     }
+
+    /**
+     * add, return new Vector that is the add of them both.
+     * @param v
+     * @return new Vector
+     */
     public Vector add(Vector v)
     {
         Vector tempVector = new Vector(this.head.add(v));
         return  tempVector;
     }
+
+    /**
+     * scale the Vector by a scale.
+     * @param number
+     * @return new vector scaled
+     */
     public Vector scale(double number)
     {
         Vector tempVector = new Vector(head.getX()*number, head.getY()*number, head.getZ()*number);
         return  tempVector;
     }
+
+    /**
+     * dotProduct, return the dotProduct of the two vectors.
+     * @param v
+     * @return Double
+     */
     public Double dotProduct(Vector v)
     {
         Double sum = Double.valueOf(0);
@@ -52,6 +106,12 @@ public class Vector {
         sum+=v.head.getZ()* head.getZ();
         return  sum;
     }
+
+    /**
+     * crossProduct, return the crossProduct of the two vectors.
+     * @param v
+     * @return new Vector
+     */
     public Vector crossProduct(Vector v)
     {
         double X = Determinant(head.getY(), head.getZ(),v.head.getZ(),v.head.getY());
@@ -61,11 +121,26 @@ public class Vector {
         Vector tempVector = new Vector(X,Y,Z);
         return tempVector;
     }
+
+    /**
+     * return the Determinant of 4 numbers
+     * @param A
+     * @param B
+     * @param C
+     * @param D
+     * @return Determinant
+     */
     public double Determinant(double A,double B,double C,double D)
     {
         return ((A*C)-(B*D));
     }
 
+    /**
+     * return the Determinant of 3 vector.
+     * @param x
+     * @param y
+     * @return double
+     */
     public double Determinant3Vectors(Vector x,Vector y)
     {
         double a = this.head.getX()*((x.head.getY()*y.head.getZ())-(x.head.getZ()*y.head.getY()));
@@ -73,6 +148,11 @@ public class Vector {
         double c = this.head.getZ()*((x.head.getX()*y.head.getY())-(x.head.getY()*y.head.getX()));
         return  (a-b+c);
     }
+
+    /**
+     * lengthSquared
+     * @return lengthSquared
+     */
     public Double lengthSquared()
     {
         double vectorLength = head.getX()* head.getX();
@@ -80,10 +160,20 @@ public class Vector {
         vectorLength += head.getZ()* head.getZ();
         return vectorLength;
     }
+
+    /**
+     * length
+     * @return length
+     */
     public double length()
     {
         return Math.sqrt(lengthSquared());
     }
+
+    /**
+     * normalize the vector and return the same Vector normalize.
+     * @return the same vector
+     */
     public Vector normalize()
     {
         Double vectorLength= this.length();
@@ -96,6 +186,11 @@ public class Vector {
         head = tempPoint;
         return this;
     }
+
+    /**
+     * normalize the vector and return new Vector normalize.
+     * @return new vector
+     */
     public Vector normalized()
     {
         Point3D tempPoint =new Point3D(head.getX(), head.getY(), head.getZ()) ;
@@ -104,7 +199,10 @@ public class Vector {
         return tempVector;
     }
 
-
+    /**
+     * flip the Vector
+     * @return new vector
+     */
     public Vector flip()
     {
         return new Vector(this.head.getX()*-1,this.head.getY()*-1,this.head.getZ()*-1);

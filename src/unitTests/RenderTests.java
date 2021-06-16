@@ -105,6 +105,7 @@ import elements.*;
 import geometries.*;
 import primitives.*;
 import renderer.*;
+import renderer.RenderMultiThread;
 import scene.Scene;
 
 /**
@@ -138,7 +139,7 @@ public class RenderTests {
 		// right
 
 		ImageWriter imageWriter = new ImageWriter("base render test", 1000, 1000);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -158,7 +159,7 @@ public class RenderTests {
 		// ...
 
 		ImageWriter imageWriter = new ImageWriter("xml render test", 1000, 1000);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -192,7 +193,7 @@ public class RenderTests {
 		scene.geometries.add(sphere,triangle1,triangle2,triangle3,triangle4);
 
 		ImageWriter imageWriter = new ImageWriter("color render test", 1000, 1000);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));

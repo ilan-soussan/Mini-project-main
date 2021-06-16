@@ -3,7 +3,6 @@
  */
 package unitTests;
 
-import geometries.Cylinder;
 import geometries.Tube;
 import org.junit.Test;
 
@@ -42,11 +41,15 @@ public class ReflectionRefractionTests {
 				new SpotLight(new Color(1000, 600, 0), new Point3D(-100, -100, 500), new Vector(-1, -1, -2)) //
 						.setKl(0.0004).setKq(0.0000006));
 
-		Render render = new Render() //
-				.setImageWriter(new ImageWriter("refractionTwoSpheres", 500, 500)) //
+		RenderMultiThread render = new RenderMultiThread() //
+				.setImageWriter(new ImageWriter("refractionTwoSpheres", 150, 150)) //
 				.setCamera(camera) //
-				.setRayTracerBase(new RayTracerBasic(scene));
+				.setRayTracerBase(new RayTracerBasic(scene))
+				.setMultithreading(3)
+				;
 		render.renderImage();
+		render.renderDepthOfField(-2500);
+		//render.renderImageSuperSampling(3);
 		render.writeToImage();
 	}
 
@@ -80,7 +83,7 @@ public class ReflectionRefractionTests {
 				.setKl(0.00001).setKq(0.000005));
 
 		ImageWriter imageWriter = new ImageWriter("reflectionTwoSpheresMirrored", 500, 500);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -113,7 +116,7 @@ public class ReflectionRefractionTests {
 				.setKl(4E-5).setKq(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -159,7 +162,7 @@ public class ReflectionRefractionTests {
 		scene.lights.add(new DirectionalLight(new Color(700, 400, 500), new Vector(0, 0, -1))); //
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadowT1", 600, 600);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -201,7 +204,7 @@ public class ReflectionRefractionTests {
 		scene.lights.add(new DirectionalLight(new Color(java.awt.Color.YELLOW), new Vector(0, 1,0))); //
 
 		ImageWriter imageWriter = new ImageWriter("pin", 1500, 1500);
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));

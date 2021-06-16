@@ -35,12 +35,13 @@ public class ShadowTests {
 				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 
-		Render render = new Render(). //
+		RenderMultiThread render = new RenderMultiThread(). //
 				setImageWriter(new ImageWriter("shadowSphereTriangleInitial", 50, 50)) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
+		render.renderImage();
 		//render.renderImage();
-		render.renderImageSuperSampling(2);
+		//render.renderImageSuperSampling(2);
 		//render.renderImageSuperSampling(2,true,950);
 		render.writeToImage();
 	}
@@ -66,7 +67,7 @@ public class ShadowTests {
 				new SpotLight(new Color(700, 400, 400), new Point3D(40, 40, 115), new Vector(-1, -1, -4)) //
 						.setKl(4E-4).setKq(2E-5));
 
-		Render render = new Render() //
+		RenderMultiThread render = new RenderMultiThread() //
 				.setImageWriter(new ImageWriter("shadowTrianglesSphere", 600, 600)) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -89,7 +90,7 @@ public class ShadowTests {
 				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 
-		Render render = new Render(). //
+		RenderMultiThread render = new RenderMultiThread(). //
 				setImageWriter(new ImageWriter("shadowSphereTriangleInitialT1", 400, 400)) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -112,7 +113,7 @@ public class ShadowTests {
 				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 
-		Render render = new Render(). //
+		RenderMultiThread render = new RenderMultiThread(). //
 				setImageWriter(new ImageWriter("shadowSphereTriangleInitialT2", 400, 400)) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -135,7 +136,7 @@ public class ShadowTests {
 				new SpotLight(new Color(400, 240, 0), new Point3D(-90, -90, 120), new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 
-		Render render = new Render(). //
+		RenderMultiThread render = new RenderMultiThread(). //
 				setImageWriter(new ImageWriter("shadowSphereTriangleInitialT3", 400, 400)) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));
@@ -158,7 +159,7 @@ public class ShadowTests {
 				new SpotLight(new Color(400, 240, 0), new Point3D(-78, -78, 75), new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 
-		Render render = new Render(). //
+		RenderMultiThread render = new RenderMultiThread(). //
 				setImageWriter(new ImageWriter("shadowSphereTriangleInitialT4", 400, 400)) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene));

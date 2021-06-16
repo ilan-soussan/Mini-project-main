@@ -1,4 +1,4 @@
-package renderer;
+/*package renderer;
 
 import elements.Camera;
 import geometries.Intersectable;
@@ -24,23 +24,39 @@ public class Render {
     public ImageWriter getImageWriter() {
         return imageWriter;
     }
+    */
 
+
+    /**
+     * constructor
+     * @param rayTracerBase
+     * @return
+     */
+/*
     public Render setRayTracerBase(RayTracerBase rayTracerBase) {
         this.rayTracerBase = rayTracerBase;
         return this;
     }
 
 
+
+//set
     public Render setCamera(Camera camera) {
         this.camera = camera;
         return this;
     }
-
+//set
     public Render setImageWriter(ImageWriter imageWriter) {
         this.imageWriter = imageWriter;
         return this;
     }
 
+
+ */
+    /**
+     * render the image and put in each pixsel his color.
+     */
+    /*
     public void renderImage() {
         if (imageWriter == null)
             throw new MissingResourceException("imageWriter is null", "Render", "imageWriter");
@@ -66,37 +82,19 @@ public class Render {
         }
 
     }
-    public void renderImage(boolean DepthOfField,double depthOfFieldNum) {
-        if (imageWriter == null)
-            throw new MissingResourceException("imageWriter is null", "Render", "imageWriter");
-        if (camera == null)
-            throw new MissingResourceException("camera is null", "Render", "Camera");
-        if (rayTracerBase == null)
-            throw new MissingResourceException("rayTracerBase is null", "Render", "rayTracerBase");
-        if(!DepthOfField)
-        {
-            renderImage();
-            return;
-        }
-
-        int x = imageWriter.getNx();
-        int y = imageWriter.getNy();
 
 
-        for (int i=0;i<x;i++)
-        {
-            for (int j =0;j<y;++j)
-            {
-                Ray pixelRay = camera.constructRayThroughPixel(x,y,i,j);
-                Color pixelColor = rayTracerBase.traceRay(pixelRay);
-                imageWriter.writePixel(i,j,pixelColor);
-            }
-        }
-        if (DepthOfField)
-            renderDepthOfField(depthOfFieldNum);
-    }
-
-
+     */
+    /**
+     * renderImageSuperSampling.
+     * For each pixel, check the average of all the colors of the pixels closest to it
+     * and set for it their average color.
+     * Which gives a whole effect of inaccurate cuts and more real and faithful to reality.
+     *
+     *
+     * @param numOfRays
+     */
+    /*
     public void renderImageSuperSampling(int numOfRays) {
         if (imageWriter == null)
             throw new MissingResourceException("imageWriter is null", "Render", "imageWriter");
@@ -130,7 +128,18 @@ public class Render {
     }
 
 
+     */
 
+    /**
+     *
+     * renderDepthOfField,
+     * render Depth Of Field
+     * Takes the color of each and every pixel ** after rendering **
+     * and what is not in our focus range we blur by turning its color into its Color * 15 times and
+     * to his 9 closest Neighbors.
+     * @param depthOfFieldNum
+     */
+    /*
     public void renderDepthOfField(double depthOfFieldNum) {
 
         int x = imageWriter.getNx();
@@ -166,7 +175,16 @@ public class Render {
             }
     }
 
+     */
 
+    /**
+     * Create a grid [over the picture] in the pixel color map. given the grid's
+     * step and color.
+     *
+     * @param interval  grid's step
+     * @param color grid's color
+     */
+    /*
     public void printGrid(int interval, Color color)
     {
 
@@ -185,6 +203,13 @@ public class Render {
             }
         }
     }
+
+     */
+
+    /**
+     * write To Image
+     */
+    /*
     public void writeToImage()
     {
         if (imageWriter == null)
@@ -195,3 +220,6 @@ public class Render {
 
 
 }
+
+
+     */

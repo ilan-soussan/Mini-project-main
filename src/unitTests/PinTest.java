@@ -272,14 +272,18 @@ public class PinTest {
         scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-500,0,-130),new Vector(0,1,-1))
                 .setKl(0.0001).setKq(0.0000005));*/
 
-        ImageWriter imageWriter = new ImageWriter("Picture1", 50, 50);
-        Render render = new Render() //
+        ImageWriter imageWriter = new ImageWriter("Picture1", 1000, 1000);
+        RenderMultiThread render = new RenderMultiThread() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracerBase(new RayTracerBasic(scene));
+                .setRayTracerBase(new RayTracerBasic(scene))
+                .setMultithreading(3)
+                ;
 
-        //render.renderImageSuperSampling(3,false,2);
+
         render.renderImage();
+        //render.renderImageSuperSampling(3);
+        //render.renderImage();
         render.renderDepthOfField(camera.getPoint().distance(new Point3D(-1200,50,-129))+20);
        // render.renderImage();
         render.writeToImage();
