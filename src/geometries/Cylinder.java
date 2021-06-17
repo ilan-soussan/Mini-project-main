@@ -1,23 +1,17 @@
 package geometries;
 import primitives.*;
 
-import java.util.List;
-
 /**
- *  class that extends Tube
- *  our why to represent Cylinder in our scene
- *
- *   @author Ilan and didi
- *
+ * this class is rempresnting a cyinder(didn't use this for the project
  */
 public class Cylinder extends Tube {
     double height;
 
     /**
-     * constructor for Cylinder class. gets Height,Radius and ray and implant them in the right places.
      * @param Height
      * @param Radius
      * @param ray
+     * constractor for cylinder that use tube constractor and add the height
      */
     public Cylinder(double Height, double Radius, Ray ray)
     {
@@ -26,11 +20,11 @@ public class Cylinder extends Tube {
     }
 
     /**
-     * constructor for Cylinder class. gets Height,Radius and ray(in shape Vector and a point) and implant them in the right places.
      * @param Height
      * @param Radius
      * @param Point
      * @param V
+     * like the other constractor but using a point and vector and not a ray
      */
     public Cylinder(double Height, double Radius, Point3D Point, Vector V)
     {
@@ -39,20 +33,14 @@ public class Cylinder extends Tube {
     }
 
     /**
-     * gets the normal of the Cylinder
      * @param point
-     * @return Vector normal to the Cylinder
+     * @return vector normal
+     * normalize axisray vec and return it
      */
     @Override
     public Vector getNormal(Point3D point) {
         return axisRay.getRayDir().normalized();
-        //return super.getNormal(point);
     }
-
-    /**
-     * gets the height of the Cylinder
-     * @return
-     */
     public double getHeight() {
         return height;
     }

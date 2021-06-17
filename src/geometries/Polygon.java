@@ -11,6 +11,7 @@ import static primitives.Util.*;
  * @author Dan
  */
 public class Polygon extends Geometry {
+
 	/**
 	 * List of polygon's vertices
 	 */
@@ -19,6 +20,12 @@ public class Polygon extends Geometry {
 	 * Associated plane in which the polygon lays
 	 */
 	protected Plane plane;
+	Box b;
+
+	@Override
+	public Box getBox() {
+		return null;
+	}
 
 	/**
 	 * Polygon constructor based on vertices list. The list must be ordered by edge
@@ -58,11 +65,6 @@ public class Polygon extends Geometry {
 	public boolean isIntsersectionsExist(Ray ray)
 	{
 		///קיים בעיה בלולאה!
-
-
-
-
-
 
 		boolean flag = true;
 		Vector v1 = (vertices.get(0).subtract(ray.getRayPoint()));

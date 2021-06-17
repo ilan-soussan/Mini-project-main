@@ -7,6 +7,9 @@ import primitives.Vector;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * didnt use this class in the project
+ */
 class CyilnderTest {
 
     @Test

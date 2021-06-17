@@ -50,9 +50,9 @@ public class PinTest {
         double s = Math.sin(angle), c = Math.cos(angle);
         return new Vector(x*c - y*s, x*s + y*c, z);
     }
-    double xAngle = Math.toRadians(0);//Looking down 4.5 degrees.
-    double yAngle = Math.toRadians(10);//Looking 8 degrees to the left.(70)
-    double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place ,
+    double xAngle = Math.toRadians(-5);//Looking down 4.5 degrees.(-8)
+    double yAngle = Math.toRadians(20);//Looking 8 degrees to the left.(70)(20)
+    double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place(-5)
 
 
 
@@ -71,8 +71,8 @@ public class PinTest {
 
     @Test
     public void pinTest() {
-        Camera camera = new Camera(new Point3D(-1500, 50, -50), toward, up) //(-1000,50,740)
-                .setViewPlaneSize(150, 150).setDistance(110);//(110)
+        Camera camera = new Camera(new Point3D(-1800, 0, 100), toward, up) //(-1000,50,740)
+                .setViewPlaneSize(150, 150).setDistance(200);//(110)
 /*
         Camera camera = new Camera(new Point3D(-1800, -110, 175), toward, up) //(-1000,50,740)
                 .setViewPlaneSize(150, 150).setDistance(200);//(110)*/
@@ -254,9 +254,9 @@ public class PinTest {
 
         for (int i = 0; i <= 11;i++){
             scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(i * -100,-44,-130),new Vector(0,1,-1))
-                    .setKl(0.0001).setKq(0.00005));
+                    .setKl(0.0005).setKq(0.00009));
             scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(i * -100,144,-130),new Vector(0,-1,-1))
-                    .setKl(0.0001).setKq(0.00005));
+                    .setKl(0.0005).setKq(0.00009));
         }
 
         /*scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(0,0,-130),new Vector(0,1,-1))
@@ -272,20 +272,16 @@ public class PinTest {
         scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-500,0,-130),new Vector(0,1,-1))
                 .setKl(0.0001).setKq(0.0000005));*/
 
-        ImageWriter imageWriter = new ImageWriter("Picture1", 1000, 1000);
+        ImageWriter imageWriter = new ImageWriter("Picture2", 2000, 2000);
         RenderMultiThread render = new RenderMultiThread() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
                 .setRayTracerBase(new RayTracerBasic(scene))
-                .setMultithreading(3)
-                ;
+                .setMultithreading(6);
 
-
-        render.renderImage();
-        //render.renderImageSuperSampling(3);
-        //render.renderImage();
+        render.renderImageSuperSampling(3);
         render.renderDepthOfField(camera.getPoint().distance(new Point3D(-1200,50,-129))+20);
-       // render.renderImage();
+        //render.renderImage();
         render.writeToImage();
 
     }
