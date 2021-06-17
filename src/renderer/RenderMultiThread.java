@@ -440,7 +440,6 @@ public class RenderMultiThread {
 			for (int f = -1 * numOfRays / 2; f < numOfRays / 2 + 1; ++f) { //numOfRays times
 
 				Ray pixelRay = camera.constructRayThroughPixelSuperSampling(nX, nY, col, row, k, f, numOfRays);
-
 				pixelColor = pixelColor.add(tracer.traceRay(pixelRay));
 			}
 		}

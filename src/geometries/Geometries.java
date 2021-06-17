@@ -91,7 +91,7 @@ public class Geometries implements Intersectable {
      * if its happening we make a list of the intersection points and if the list isnt empty(there are points)
      * we add them to a temp list and returns it
      */
-    @Override
+/*    @Override
     public List<GeoPoint> findGeoIntersection(Ray ray) {
 
         List<GeoPoint> List = findGeoIntersection(ray,mainBox);
@@ -127,7 +127,26 @@ public class Geometries implements Intersectable {
 
         }
         return List;
+    }*/
+    @Override
+    public List<GeoPoint> findGeoIntersection(Ray ray) {
+        List<GeoPoint> tempList =new LinkedList<GeoPoint>();
+        for (Intersectable geometry:geometries) {
+            if (geometry.getBox().Interact(ray)) { //check if ray interact with box
+                List<GeoPoint> listFromGeometries = geometry.findGeoIntersection(ray); //chek list of points
+                if (listFromGeometries != null ) {
+                    for (GeoPoint gp : listFromGeometries) {
+                        tempList.add(gp); //add the points to a temp list
+                    }
+                }
+            }
+        }
+
+        if(tempList.isEmpty()) //if temp lisnt is empty return null alse rer the list
+            return null;
+        return tempList;
     }
+}
 
 
             /*
@@ -174,7 +193,7 @@ public class Geometries implements Intersectable {
         return tempList;
         */
 
-}
+
 
 
 

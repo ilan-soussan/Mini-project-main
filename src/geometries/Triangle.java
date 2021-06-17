@@ -19,24 +19,24 @@ public class Triangle extends Polygon{
         super(p1,p2,p3);
         double PxMax,PyMax,PzMax,PxMin,PyMin,PzMin;
         //which coordinate x the biggest
-        if (p1.getX() > p2.getX() && p1.getX() > p3.getX())
+        if (p1.getX() >= p2.getX() && p1.getX() >= p3.getX())
             PxMax = p1.getX();
-        else if (p1.getX() < p2.getX() && p2.getX() > p3.getX())
+        else if (p1.getX() <= p2.getX() && p2.getX() >= p3.getX())
             PxMax = p2.getX();
         else
             PxMax = p3.getX();
         //which coordinate y the biggest
-        if (p1.getY() > p2.getY() && p1.getY() > p3.getY())
+        if (p1.getY() >= p2.getY() && p1.getY() >= p3.getY())
             PyMax = p1.getY();
-        else if (p1.getY() < p2.getY() && p2.getY() > p3.getY())
+        else if (p1.getY() <= p2.getY() && p2.getY() >= p3.getY())
             PyMax = p2.getY();
         else
             PyMax = p3.getY();
         //which coordinate z the biggest
 
-        if (p3.getZ() < p1.getZ() && p1.getZ() > p2.getZ())
+        if (p3.getZ() <= p1.getZ() && p1.getZ() >= p2.getZ())
             PzMax = p1.getZ();
-        else if (p1.getZ() < p2.getZ() && p2.getZ() > p3.getZ())
+        else if (p1.getZ() <= p2.getZ() && p2.getZ() >= p3.getZ())
             PzMax = p2.getZ();
         else
             PzMax = p3.getZ();
@@ -44,25 +44,25 @@ public class Triangle extends Polygon{
 
         //which coordinate x the smallest
 
-        if (p1.getX() < p2.getX() && p1.getX() < p3.getX())
+        if (p1.getX() <= p2.getX() && p1.getX() <= p3.getX())
             PxMin = p1.getX();
-        else if (p1.getX() > p2.getX() && p2.getX() < p3.getX())
+        else if (p1.getX() >= p2.getX() && p2.getX() <= p3.getX())
             PxMin = p2.getX();
         else
             PxMin = p3.getX();
         //which coordinate x the smallest
 
-        if (p1.getY() < p2.getY() && p1.getY() < p3.getY())
+        if (p1.getY() <= p2.getY() && p1.getY() <= p3.getY())
             PyMin = p1.getY();
-        else if (p1.getY() > p2.getY() && p2.getY() < p3.getY())
+        else if (p1.getY() >= p2.getY() && p2.getY() <= p3.getY())
             PyMin = p2.getY();
         else
             PyMin = p3.getY();
         //which coordinate x the smallest
 
-        if (p3.getZ() > p1.getZ() && p2.getZ() > p1.getZ())
+        if (p3.getZ() >= p1.getZ() && p2.getZ() >= p1.getZ())
             PzMin = p1.getZ();
-        else if (p1.getZ() > p2.getZ() && p2.getZ() < p3.getZ())
+        else if (p1.getZ() >= p2.getZ() && p2.getZ() <= p3.getZ())
             PzMin = p2.getZ();
         else
             PzMin = p3.getZ();

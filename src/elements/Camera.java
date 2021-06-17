@@ -5,6 +5,7 @@ import primitives.*;
 import java.util.LinkedList;
 import java.util.List;
 import static primitives.Util.*;
+import java.math.*;
 
 /**
  *  class that we will use as our camera.
@@ -25,6 +26,7 @@ public class Camera {
 
     /**
      * getter for Vtowards
+     *
      * @return Vector
      */
     public Vector getVtowards() {
@@ -33,6 +35,7 @@ public class Camera {
 
     /**
      * getter for Vright
+     *
      * @return Vector
      */
     public Vector getVright() {
@@ -41,6 +44,7 @@ public class Camera {
 
     /**
      * getter for Vup
+     *
      * @return Vector
      */
 
@@ -50,6 +54,7 @@ public class Camera {
 
     /**
      * getter for point of the camera
+     *
      * @return point
      */
 
@@ -61,13 +66,11 @@ public class Camera {
     /**
      * @param cameraPoint
      * @param cameraVtowards
-     * @param cameraVup
-     *
-     * constructor for our camera check if the Vup and towards are really 90 degrees else it wont work
-     * next we calculate vright(Vup*Vtoward)
-     * and put all the prams in the camera params after normalize the voctors
+     * @param cameraVup      constructor for our camera check if the Vup and towards are really 90 degrees else it wont work
+     *                       next we calculate vright(Vup*Vtoward)
+     *                       and put all the prams in the camera params after normalize the voctors
      */
-    public Camera (Point3D cameraPoint, Vector cameraVtowards, Vector cameraVup) {
+    public Camera(Point3D cameraPoint, Vector cameraVtowards, Vector cameraVup) {
         if (!Util.isZero(cameraVup.dotProduct(cameraVtowards))) {
             throw new IllegalArgumentException("Vectors not vertical to each other"); // check if the vectors are 90 degrees
         }
@@ -79,6 +82,7 @@ public class Camera {
 
     /**
      * setter of the viewPlanesize
+     *
      * @param width
      * @param height
      * @return a camera
@@ -91,6 +95,7 @@ public class Camera {
 
     /**
      * setter of the distance of the camera
+     *
      * @param distance
      * @return a camera
      */
@@ -110,6 +115,7 @@ public class Camera {
 
     /**
      * Get The ray that pass Through Pixel in j,i
+     *
      * @param nX
      * @param nY
      * @param j
@@ -120,23 +126,23 @@ public class Camera {
         //image center
         Point3D Pc = point.add(Vtowards.scale(Distance));
         //Ratio(pixel width & height)
-        double Ry = Height/nY;
-        double Rx = Width/nX;
+        double Ry = Height / nY;
+        double Rx = Width / nX;
         //Pixel[i,j] center
 
-        double Yi = ((i-(nY-1)/2d)*Ry)*-1;
-        double Xj = ((j-(nX-1)/2d)*Rx)*-1;
+        double Yi = ((i - (nY - 1) / 2d) * Ry) * -1;
+        double Xj = ((j - (nX - 1) / 2d) * Rx) * -1;
         Point3D Pij = Pc;
 
 
-        if(!isZero(Xj))
+        if (!isZero(Xj))
             Pij = Pij.add(Vright.scale(Xj));
-        if(!isZero(Yi))
+        if (!isZero(Yi))
             Pij = Pij.add(Vup.scale(Yi));
 
 
         Vector Vij = Pij.subtract(point);
-        Ray ray = new Ray(Vij.normalize(),point);
+        Ray ray = new Ray(Vij.normalize(), point);
 
         return ray;
 
@@ -144,6 +150,7 @@ public class Camera {
 
     /**
      * return the Distance of thee camera
+     *
      * @return Distance
      */
     public double getDistance() {
@@ -152,6 +159,7 @@ public class Camera {
 
     /**
      * Get The ray that pass Through Pixel in j,i with point changes for super sampling
+     *
      * @param nX
      * @param nY
      * @param j
@@ -161,35 +169,37 @@ public class Camera {
      * @param numOfrays
      * @return ray
      */
-    public Ray constructRayThroughPixelSuperSampling(int nX, int nY, int j, int i, int k, int f,int numOfrays) {
+    public Ray constructRayThroughPixelSuperSampling(int nX, int nY, int j, int i, int k, int f, int numOfrays) {
         //image center
         Point3D Pc = point.add(Vtowards.scale(Distance));
         //Ratio(pixel width & height)
-        double Ry = Height/nY;
-        double Rx = Width/nX;
+        double Ry = Height / nY;
+        double Rx = Width / nX;
         //Pixel[i,j] center
 
         // changes the point for super sampling
-        if(!(k==0))
-            Pc = Pc.add(new Vector(Rx/numOfrays,Rx/numOfrays,Rx/numOfrays).scale(k));
-        if(!(f==0))
-            Pc = Pc.add(new Vector(Ry/numOfrays,Ry/numOfrays,Ry/numOfrays).scale(f));
+        if (!(k == 0))
+            Pc = Pc.add(new Vector(Rx / numOfrays, Rx / numOfrays, Rx / numOfrays).scale(k));
+        if (!(f == 0))
+            Pc = Pc.add(new Vector(Ry / numOfrays, Ry / numOfrays, Ry / numOfrays).scale(f));
 
-        double Yi = ((i-(nY-1)/2d)*Ry)*-1;
-        double Xj = ((j-(nX-1)/2d)*Rx)*-1;
+        double Yi = ((i - (nY - 1) / 2d) * Ry) * -1;
+        double Xj = ((j - (nX - 1) / 2d) * Rx) * -1;
         Point3D Pij = Pc;
 
 
-        if(!isZero(Xj))
+        if (!isZero(Xj))
             Pij = Pij.add(Vright.scale(Xj));
-        if(!isZero(Yi))
+        if (!isZero(Yi))
             Pij = Pij.add(Vup.scale(Yi));
 
 
         Vector Vij = Pij.subtract(point);
-        Ray ray = new Ray(Vij.normalize(),point);
+        Ray ray = new Ray(Vij.normalize(), point);
 
         return ray;
 
     }
 }
+
+
