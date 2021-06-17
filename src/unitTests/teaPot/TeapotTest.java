@@ -1,4 +1,4 @@
-package unitTests;
+package unitTests.teaPot;
 
 import org.junit.Test;
 

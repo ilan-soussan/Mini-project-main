@@ -1,7 +1,7 @@
 /**
  *
  */
-package unitTests;
+package unitTests.renderer;
 
 import geometries.Tube;
 import org.junit.Test;

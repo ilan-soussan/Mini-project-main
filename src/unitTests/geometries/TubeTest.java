@@ -2,7 +2,7 @@
  * 
  */
 
-package unitTests;
+package unitTests.geometries;
 
 import static org.junit.Assert.*;
 

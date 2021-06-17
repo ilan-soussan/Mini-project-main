@@ -97,7 +97,7 @@ public class RenderTests {
 }
 */
 
-package unitTests;
+package unitTests.renderer;
 
 import org.junit.Test;
 

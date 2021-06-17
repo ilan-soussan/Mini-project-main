@@ -1,4 +1,4 @@
-package unitTests;
+package unitTests.primitivs;
 
 import geometries.Sphere;
 import geometries.Triangle;

@@ -1,4 +1,4 @@
-package unitTests;
+package unitTests.geometries;
 
 import geometries.Triangle;
 import org.junit.jupiter.api.Test;
