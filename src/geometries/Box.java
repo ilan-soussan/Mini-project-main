@@ -3,6 +3,9 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Boundig box class we will use this class ro create a bounding box foe each shape
  *
@@ -10,6 +13,7 @@ import primitives.Ray;
  */
 class Box {
     Point3D pMin,pMax; //two points in the end of the imageniry cube
+    public List<Box> listOfBoxses ;
 
     public Point3D getP1() {
         return pMin;
@@ -21,6 +25,7 @@ class Box {
 
     public Box(Point3D P1, Point3D P2) //constractor
     {
+        listOfBoxses = new LinkedList<>();
         pMin = P1;
         pMax = P2;
     }
@@ -113,6 +118,8 @@ class Box {
      * and then put them in pmax and pmin
      */
     public void addBox(Box b){
+        if(b ==null)
+            return;
         if(this.pMax == null && this.pMin == null)
         {
             this.pMin = b.pMin;
@@ -132,6 +139,27 @@ class Box {
 
     }
 
+    public Box addToNewBox(Box b) {
+        if(b ==null)
+            return null;
+        if(this.pMax == null && this.pMin == null)
+        {
+            this.pMin = b.pMin;
+            this.pMax = b.pMax;
+        }
+            return new Box(
+            pMin = new Point3D(
+                    Math.min(pMin.getX(), b.pMin.getX()),
+                    Math.min(pMin.getY(), b.pMin.getY()),
+                    Math.min(pMin.getZ(), b.pMin.getZ())),
+            pMax = new Point3D(
+                    Math.max(pMax.getX(), b.pMax.getX()),
+                    Math.max(pMax.getY(), b.pMax.getY()),
+                    Math.max(pMax.getZ(), b.pMax.getZ()))
+            );
+
+
+    }
 }
 
 

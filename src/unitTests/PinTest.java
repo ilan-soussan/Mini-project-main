@@ -224,12 +224,12 @@ public class PinTest {
                     .setKl(0.0005).setKq(0.00009));
         }
 
-        ImageWriter imageWriter = new ImageWriter("Picture2", 500, 500);
+        ImageWriter imageWriter = new ImageWriter("Picture2", 20, 20);
         RenderMultiThread render = new RenderMultiThread() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
-                .setRayTracerBase(new RayTracerBasic(scene))
-                .setMultithreading(6);
+                .setRayTracerBase(new RayTracerBasic(scene));
+//                .setMultithreading(6);
 
         //render.renderImageSuperSampling(3);
         //render.renderDepthOfField(camera.getPoint().distance(new Point3D(-1200,50,-129))+20);

@@ -42,13 +42,11 @@ public class ReflectionRefractionTests {
 						.setKl(0.0004).setKq(0.0000006));
 
 		RenderMultiThread render = new RenderMultiThread() //
-				.setImageWriter(new ImageWriter("refractionTwoSpheres", 150, 150)) //
+				.setImageWriter(new ImageWriter("refractionTwoSpheres", 200,200 )) //
 				.setCamera(camera) //
 				.setRayTracerBase(new RayTracerBasic(scene))
-				.setMultithreading(3)
 				;
 		render.renderImage();
-		render.renderDepthOfField(-2500);
 		//render.renderImageSuperSampling(3);
 		render.writeToImage();
 	}
