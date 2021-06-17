@@ -44,9 +44,9 @@ public class Pin{
         Line = new Sphere(4,new Point3D(location.getX(),location.getY(),location.getZ() + 30)); //here we calculate the center of the line sphere
         Line.setEmission(new Color(java.awt.Color.RED)).setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30));
         list = List.of(Head,BigS,MediumSUnder,MediumSOn,SmallSUnder,SmallSOn,Line); //list of
-        box = new Box(); //deafault box
+        box = BigS.getBox(); //deafault box
         for (Sphere s:list) { //foreach sphereb add the box
-            box.add(s.getBox());
+            box.addBox(s.getBox());
         }
     }
 

@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class Geometries implements Intersectable{
     private List<Intersectable> geometries;
-    Box box = new Box();
+    Box box;
 
     public Geometries()
     {
@@ -37,8 +37,9 @@ public class Geometries implements Intersectable{
      * add a shape int the shapes list and also to the box list
      */
     public void add(Intersectable... geometrieList) {
+        box = geometrieList[0].getBox();
         for (int i=0;i<geometrieList.length;i++) {
-            box.add(geometrieList[i].getBox());
+            box.addBox(geometrieList[i].getBox());
             geometries.add(geometrieList[i]);
     }
 }
@@ -50,18 +51,9 @@ public class Geometries implements Intersectable{
 
     @Override
     public Box getBox() {
-        Box inner = new Box();
-        for (Intersectable Inter: this.getList()) { //here we go on all the shapes in our list
-            if (inner != null) { //if the new isnt null
-                if (box == null) { //only is the box is null now
-                    box = new Box(inner.pMin, inner.pMax); //the box will be the new box we created
-                }
-                else { //we add to the box the intersectable box
-                    box.add(Inter.getBox());
-                }
-            }
-        }
-        return box;
+        if(box != null)
+            return box;
+        return null;
 
     }
 

@@ -20,8 +20,8 @@ public class PinTest {
 
     private Vector RotateX(Vector v, double angle){
         Point3D head = v.getHead();
-        double x = head.getX(), y= head.getY(), z= head.getZ();
         double s = Math.sin(angle), c = Math.cos(angle);
+        double x = head.getX(), y= head.getY(), z= head.getZ();
         return new Vector(x, y*c - z*s, y*s + z*c);
     }
 
@@ -31,10 +31,10 @@ public class PinTest {
      * @param angle The angle of rotation.
      * @return The resultant vector.*/
 
-    private Vector RotateY(Vector v, double angle){
+    private Vector TurnOnY(Vector v, double angle){
         Point3D head = v.getHead();
-        double x = head.getX(), y= head.getY(), z= head.getZ();
         double s = Math.sin(angle), c = Math.cos(angle);
+        double x = head.getX(), y= head.getY(), z= head.getZ();
         return new Vector(x*c + z*s, y, -x*s + z*c);
     }
 
@@ -44,27 +44,21 @@ public class PinTest {
      * @param angle The angle of rotation.
      * @return The resultant vector.*/
 
-    private Vector RotateZ(Vector v, double angle){
+    private Vector TurnOnZ(Vector v, double angle){
         Point3D head = v.getHead();
-        double x = head.getX(), y= head.getY(), z= head.getZ();
         double s = Math.sin(angle), c = Math.cos(angle);
+        double x = head.getX(), y= head.getY(), z= head.getZ();
         return new Vector(x*c - y*s, x*s + y*c, z);
     }
-    double xAngle = Math.toRadians(-5);//Looking down 4.5 degrees.(-8)
-    double yAngle = Math.toRadians(20);//Looking 8 degrees to the left.(70)(20)
-    double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place(-5)
+    double xAngle = Math.toRadians(-5);//Looking right 5 radians.
+    double yAngle = Math.toRadians(20);//Looking 2.4 degrees to the left.
+    double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place
 
 
 
 
-    /*
-    double xAngle = Math.toRadians(-5);//Looking down 4.5 degrees.
-    double yAngle = Math.toRadians(23);//Looking 8 degrees to the left.(70)
-    double zAngle = Math.toRadians(0);//Rotation around z axis is like having ones head stay in place ,
-    // and spin his legs around him without turning him away from what hes looking at.
-*/
-    Vector toward = RotateZ(RotateY(RotateX(new Vector(1,0,0), xAngle), yAngle), zAngle);
-    Vector up = RotateZ(RotateY(RotateX(new Vector(0,0,1), xAngle), yAngle), zAngle);
+    Vector toward = TurnOnZ(TurnOnY(RotateX(new Vector(1,0,0), xAngle), yAngle), zAngle);
+    Vector up = TurnOnZ(TurnOnY(RotateX(new Vector(0,0,1), xAngle), yAngle), zAngle);
 
 
 
@@ -79,14 +73,7 @@ public class PinTest {
         /*Camera camera = new Camera(new Point3D(-1000, 50, -150), new Vector(1, 0, 0), new Vector(0, 0, 1)) //
                 .setViewPlaneSize(150, 150).setDistance(800);*/
 
-        /*scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.BLACK), 0.30));
-        Pin p1 = new Pin(new Point3D(50,50,-150),new Point3D(50,50,-130));
-        Pin p2 = new Pin(new Point3D(100,90,-150),new Point3D(100,90,-130));
-        Pin p3 = new Pin(new Point3D(100,10,-150),new Point3D(100,10,-130));
-        Pin p4 = new Pin(new Point3D(150,130,-150),new Point3D(150,130,-130));
-        Pin p5 = new Pin(new Point3D(150,50,-150),new Point3D(150,50,-130));
-        Pin p6 = new Pin(new Point3D(150,-30,-150),new Point3D(150,-30,-130));*/
-
+        //here we make our 6npins
         Pin p1 = new Pin(new Point3D(50,50,-150),new Point3D(50,50,-140));
         Pin p2 = new Pin(new Point3D(100,90,-150),new Point3D(100,90,-140));
         Pin p3 = new Pin(new Point3D(100,10,-150),new Point3D(100,10,-140));
@@ -95,6 +82,7 @@ public class PinTest {
         Pin p6 = new Pin(new Point3D(150,-30,-150),new Point3D(150,-30,-140));
 
 
+        //add all sphere to the geometry list
         List<Pin> Plist = List.of(p1,p2,p3,p4,p5,p6);
         for (Pin p:Plist) {
             for (Sphere s : p.list) {
@@ -105,6 +93,7 @@ public class PinTest {
         }
 
 
+        //we make here a parket
         Point3D P1 = new Point3D(200,-50,-150);
         Triangle T1;
         Triangle T2;
@@ -135,8 +124,7 @@ public class PinTest {
 
         scene.geometries.add(
 
-
-
+                //this are the black barrier's
                 new Triangle(new Point3D(-1200,-50,-150),new Point3D(200,-50,-130),new Point3D(200,-50,-150))
                         .setEmission(new Color(java.awt.Color.BLACK))
                         .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0)),
@@ -154,7 +142,7 @@ public class PinTest {
                         .setMaterial(new Material().setKd(0.95).setKs(0.1).setShininess(200)),
 
 
-
+                //here are the walls of glass and the flooor
                 new Plane(new Point3D(0, 290, -155), new Point3D(1, 290, -3), new Point3D(2, 290, -55))
                         .setEmission(new Color(java.awt.Color.BLACK))
                         .setMaterial(new Material().setkT(0.65).setShininess(40).setkR(0.4)),
@@ -172,7 +160,7 @@ public class PinTest {
                         .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(20)),
 
 
-
+                //this plane repressent the sky
                 new Plane(new Point3D(0, 340, -155), new Point3D(1, 340, -3), new Point3D(2, 340, -55))
                         .setEmission(new Color(java.awt.Color.CYAN))
                         .setMaterial(new Material()),
@@ -186,7 +174,7 @@ public class PinTest {
                         .setMaterial(new Material()),
 
 
-
+                //here we make the light over the maslul
                 new Sphere(30, new Point3D(-1000, 50, 70))
                         .setEmission(new Color(java.awt.Color.BLACK))
                         .setMaterial(new Material().setKd(0.4).setKs(0.3).setShininess(100).setkT(0.7)),
@@ -211,36 +199,12 @@ public class PinTest {
 
 
 
-
+                //this is the red ball
                 new Sphere(20,new Point3D(-1200,50,-129))
                         .setEmission(new Color(java.awt.Color.RED))
                         .setMaterial(new Material().setKs(0.5).setShininess(50).setkR(0.3)));
-                /*new Plane(new Point3D(0, 0, -150), new Point3D(150, 0, 0), new Point3D(-150, 0, 0))
-                        .setEmission(new Color(java.awt.Color.ORANGE))
-                        .setMaterial(new Material().setKd(0.0).setKs(0.0).setShininess(20).setkR(0.5)));
-                new Sphere(10, new Point3D(3, 0, 15)) //
-                        .setEmission(new Color(java.awt.Color.WHITE)) //
-                        .setMaterial(new Material().setKd(0.0).setKs(0.0).setShininess(20)),
-                new Sphere(7.5, new Point3D(3, 0, 7.5)) //
-                        .setEmission(new Color(java.awt.Color.BLUE)) //
-                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
-                new Sphere(6, new Point3D(3, 0, 3.8)) //
-                        .setEmission(new Color(java.awt.Color.RED)) //
-                        .setMaterial(new Material().setKd(0.2).setKs(0.25).setShininess(20)),
-                new Sphere(7.5, new Point3D(3, 0, 22.5)) //
-                        .setEmission(new Color(java.awt.Color.YELLOW)) //
-                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
-                new Sphere(6, new Point3D(3, 0, 26.3)) //
-                        .setEmission(new Color(java.awt.Color.PINK)) //
-                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
-                new Sphere(5, new Point3D(3, 0, 50)) //
-                        .setEmission(new Color(java.awt.Color.GREEN)) //
-                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
-                new Tube(5,new Ray(new Vector(0,0,5),new Point3D(30,0,0)))
-                        .setEmission(new Color(java.awt.Color.WHITE)) //
-                        .setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)));*/
 
-
+        //the lights over the maslul
         scene.lights.add( new SpotLight(new Color(1000, 600, 0), new Point3D(-1000, 50, 0),new Vector(0,0,1))
                 .setKl(0.0004).setKq(0.0000006));
 
@@ -252,6 +216,7 @@ public class PinTest {
 
         scene.lights.add(new DirectionalLight(new Color(java.awt.Color.WHITE), new Vector(-125, -125,-190)));
 
+        //spot light that are on the maslul
         for (int i = 0; i <= 11;i++){
             scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(i * -100,-44,-130),new Vector(0,1,-1))
                     .setKl(0.0005).setKq(0.00009));
@@ -259,55 +224,18 @@ public class PinTest {
                     .setKl(0.0005).setKq(0.00009));
         }
 
-        /*scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(0,0,-130),new Vector(0,1,-1))
-                .setKl(0.0001).setKq(0.0000005));
-        scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-100,0,-130),new Vector(0,1,-1))
-                .setKl(0.0001).setKq(0.0000005));
-        scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-200,0,-130),new Vector(0,1,-1))
-                .setKl(0.0001).setKq(0.0000005));
-        scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-300,0,-130),new Vector(0,1,-1))
-                .setKl(0.0001).setKq(0.0000005));
-        scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-400,0,-130),new Vector(0,1,-1))
-                .setKl(0.0001).setKq(0.0000005));
-        scene.lights.add(new SpotLight(new Color(java.awt.Color.BLUE), new Point3D(-500,0,-130),new Vector(0,1,-1))
-                .setKl(0.0001).setKq(0.0000005));*/
-
-        ImageWriter imageWriter = new ImageWriter("Picture2", 2000, 2000);
+        ImageWriter imageWriter = new ImageWriter("Picture2", 500, 500);
         RenderMultiThread render = new RenderMultiThread() //
                 .setImageWriter(imageWriter) //
                 .setCamera(camera) //
                 .setRayTracerBase(new RayTracerBasic(scene))
                 .setMultithreading(6);
 
-        render.renderImageSuperSampling(3);
-        render.renderDepthOfField(camera.getPoint().distance(new Point3D(-1200,50,-129))+20);
-        //render.renderImage();
+        //render.renderImageSuperSampling(3);
+        //render.renderDepthOfField(camera.getPoint().distance(new Point3D(-1200,50,-129))+20);
+        render.renderImage();
         render.writeToImage();
 
     }
 
 }
-
-
-
-
-/*Point3D P1 = new Point3D(200,-50,-150);
-        Point3D P2 = new Point3D(-1200,-50,150);
-        for (int i = 0; i <= 7; i++)
-        {
-            scene.geometries.add (
-            new Triangle(P1,new Point3D(-1200,P1.getY(),-150),new Point3D(200,-25 + i*25,-150))
-            .setEmission(new Color(102,51,0))
-            .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0.5)),
-
-            new Triangle(P2,new Point3D(-1200,-25 + i*25,-150),new Point3D(200,-25 + i*25,-150))
-            .setEmission(new Color(java.awt.Color.ORANGE))
-            .setMaterial(new Material().setKd(0.95).setKs(0.5).setShininess(200).setkR(0.5)));
-            P1 = new Point3D(200,-25 + i*25,-150);
-            P2 = new Point3D(-1200,-25 + i*25,-150);
-
-
-
-
-        }
-*/
